@@ -1,20 +1,40 @@
 'use strict';
 
-var pages = require('../features/step_definitions/pages');
+var pages = require('../features/step_definitions/pages/index');
 var mainPage = new pages.MainPage()
 
 var Q = require('q');
 var EC = protractor.ExpectedConditions;
 
-describe("A suite", function() {
+var chai = require('chai');
+var chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
+
+var expect = chai.expect;
+var should = chai.should;
+
+describe("A suite", function(done) {
     it("contains spec with an expectation", function() {
         mainPage.open();
         mainPage.add(1, 2);
-        var array = mainPage.getArray(function(result) {
-            console.log("Array (inside): " + result);
-            return result;
+        mainPage.add(2, 3);
+
+        //expect(mainPage.getArray()).to.eventually.eql(['Time', 'Expression', 'Result']);
+        mainPage.getArray().then(function(result) {
+            expect(result.length).to.equal(2);
+            expect(result[0].length).to.equal(3);
+            expect(result[1].length).to.equal(3);
         });
-        console.log("Array (outside): " + array);
+
+
+
+        //mainPage.getArray().should.eventually.equal("foo");
+
+        //var array = mainPage.getArray(function(result) {
+        //    console.log("Array (inside): " + result);
+        //    return result;
+        //});
+        //console.log("Array (outside): " + array);
         //Q.when(mainPage.open());
         //mainPage.open()
         //    .then(function() {

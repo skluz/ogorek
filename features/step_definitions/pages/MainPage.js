@@ -12,7 +12,7 @@ module.exports = function MainPage() {
     var first = element(by.model('first'));
     var second = element(by.model('second'));
     var goButton = $('#gobutton');
-    var table = $('.table');
+    var table = $('.table tbody');
 
     this.add = function(a, b) {
         console.log("Hello");
@@ -25,14 +25,30 @@ module.exports = function MainPage() {
         goButton.click();
     };
 
-    this.getArray = function(done) {
-        table.all(by.tagName('th')).map(function(th) {
-            return th.getText();
-        }).then(function (result) {
-            done(result);
-        });
-        //expect(result).to.eventually.be.fulfilled.and.notify(done);
+    this.getArray = function() {
+        // 1
+        //table.all(by.tagName('th')).map(function(th) {
+        //    return th.getText();
+        //}).then(function (result) {
+        //    done(result);
+        //});
+
+        // 2
         //Q.when(result, done);
+
+        //var result = table.all(by.tagName('th')).map(function(th) {
+        //    return th.getText();
+        //});
+        //
+        //expect(result).to.eventually.be.fulfilled.and.notify(done);
+
+        return table.all(by.tagName('tr')).map(function(tr) {
+            var cells = tr.all(by.tagName('td')).map(function(td) {
+                return td.getText();
+            })
+            return cells;
+        });
+
     }
 
     this.open = function() {
