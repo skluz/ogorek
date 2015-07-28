@@ -49,7 +49,7 @@ describe("A suite", function(done) {
         //    console.log("Clicked!");
         //})
         //console.log("After click");
-        browser.waitForAngular();
+        //browser.waitForAngular();
         console.log("Finish");
     });
 });
