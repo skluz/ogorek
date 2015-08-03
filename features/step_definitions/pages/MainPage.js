@@ -15,8 +15,6 @@ module.exports = function MainPage() {
     var table = $('.table tbody');
 
     this.add = function(a, b) {
-        return Q.fcall(first.sendKeys(a));
-        console.log("Hello");
         first.sendKeys(a).then(function() {
            console.log("First field filled");
         });
@@ -53,7 +51,12 @@ module.exports = function MainPage() {
     }
 
     this.open = function() {
-        return browser.get('http://juliemr.github.io/protractor-demo/');
+        browser.get('http://juliemr.github.io/protractor-demo/');
+    }
+
+    this.open2 = function(callback) {
+        browser.get('http://juliemr.github.io/protractor-demo/');
+        callback();
     }
 
 }

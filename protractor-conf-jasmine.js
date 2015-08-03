@@ -1,6 +1,6 @@
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['jasmine/hello.js'],
+    specs: ['jasmine/jasmineHelloStep.js'],
     capabilities: {
         browserName: 'chrome'
     },

@@ -13,7 +13,7 @@ chai.use(chaiAsPromised);
 var expect = chai.expect;
 var should = chai.should;
 
-describe("A suite", function(done) {
+describe("A suite", function() {
     it("contains spec with an expectation", function() {
         mainPage.open();
         mainPage.add(1, 2);
