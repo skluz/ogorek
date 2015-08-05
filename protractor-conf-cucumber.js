@@ -6,5 +6,8 @@ exports.config = {
   },
   framework: 'cucumber',
   directConnect: 'true',
-  baseUrl: 'http://juliemr.github.io/'
+  baseUrl: 'http://juliemr.github.io/',
+  cucumberOpts: {
+    noSnippets: true
+  }
 }

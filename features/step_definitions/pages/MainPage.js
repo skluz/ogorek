@@ -8,6 +8,8 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
+var logger = require('../utils/logger')(module);
+
 var MainPage = function () {
 
   var first = element(by.model('first'));
@@ -16,13 +18,12 @@ var MainPage = function () {
   var table = $('.table tbody');
 
   this.add = function(a, b) {
-    first.sendKeys(a).then(function() {
-      console.log("First field filled");
-    });
-    second.sendKeys(b).then(function() {
-      console.log("Second field filled");
-    });
-    return goButton.click();
+    return Q.all([
+      first.sendKeys(a).then(function() {
+        logger.info("Sending keys: %s", a);
+      }),
+      second.sendKeys(b),
+      goButton.click()]);
   };
 
   this.getArray = function() {
