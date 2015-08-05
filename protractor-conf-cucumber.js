@@ -5,5 +5,6 @@ exports.config = {
         browserName: 'chrome'
     },
     framework: 'cucumber',
-    directConnect: 'true'
+    directConnect: 'true',
+    baseUrl: 'http://juliemr.github.io/'
 }

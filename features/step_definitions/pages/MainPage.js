@@ -1,13 +1,14 @@
 'use strict';
 
+var Page = require('../pages').Page;
+
 var Q = require('q');
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
-
 var expect = chai.expect;
 
-module.exports = function MainPage() {
+var MainPage = function () {
 
     var first = element(by.model('first'));
     var second = element(by.model('second'));
@@ -18,10 +19,11 @@ module.exports = function MainPage() {
         first.sendKeys(a).then(function() {
            console.log("First field filled");
         });
+
         second.sendKeys(b).then(function() {
             console.log("Second field filled");
         });
-        goButton.click();
+        return goButton.click();
     };
 
     this.getArray = function() {
@@ -51,12 +53,11 @@ module.exports = function MainPage() {
     }
 
     this.open = function() {
-        browser.get('http://juliemr.github.io/protractor-demo/');
+        return Page.prototype.open.call(this, '/protractor-demo/');
     }
 
-    this.open2 = function(callback) {
-        browser.get('http://juliemr.github.io/protractor-demo/');
-        callback();
-    }
+};
 
-}
+MainPage.prototype = new Page();
+
+module.exports = MainPage;

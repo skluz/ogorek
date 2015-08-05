@@ -16,6 +16,7 @@
     "jasmine": "^2.3.1",
     "protractor": "2.1.0",
     "q": "^1.4.1",
-    "sugar-step": "^0.1.0"
+    "sugar-step": "^0.1.0",
+    "winston": "^1.0.1"
   }
 }

@@ -15,12 +15,15 @@ var should = chai.should;
 
 describe("A suite", function() {
     it("contains spec with an expectation", function() {
-        mainPage.open();
+        browser.get('http://juliemr.github.io/protractor-demo/');
+
+        //mainPage.open();
         mainPage.add(1, 2);
         mainPage.add(2, 3);
 
         //expect(mainPage.getArray()).to.eventually.eql(['Time', 'Expression', 'Result']);
         mainPage.getArray().then(function(result) {
+            expect(0).to.equal(2);
             expect(result.length).to.equal(2);
             expect(result[0].length).to.equal(3);
             expect(result[1].length).to.equal(3);
