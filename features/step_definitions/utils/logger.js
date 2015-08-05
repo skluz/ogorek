@@ -4,7 +4,7 @@ var winston = require('winston');
 
 var label = function(callingModule) {
   if(typeof callingModule !== 'undefined') {
-    var parts = callingModule.id.split('/');
+    var parts = callingModule.id.split(/[\\/]/);
     return parts[parts.length - 2] + '/' + parts.pop();
   } else {
     return '';
