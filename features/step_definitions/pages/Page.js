@@ -25,8 +25,5 @@ Page.prototype.validateTitle = function(regexp) {
   return expect(browser.getTitle()).to.eventually.match(regexp);
 };
 
-Page.prototype.doSomething = function(element, name) {
-  logger.info('Clicking on element: ')
-};
 
 module.exports = Page;

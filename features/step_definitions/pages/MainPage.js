@@ -1,6 +1,7 @@
 'use strict';
 
 var Page = require('../pages').Page;
+var Actions = require('../utils/actions');
 
 var Q = require('q');
 var chai = require('chai');
@@ -8,20 +9,20 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
-var logger = require('../utils/logger')(module);
 
 var MainPage = function () {
+
+  var A = new Actions();
 
   var first = element(by.model('first'));
   var second = element(by.model('second'));
   var goButton = $('#gobutton');
   var table = $('.table tbody');
 
+
   this.add = function(a, b) {
     return Q.all([
-      first.sendKeys(a).then(function() {
-        logger.info("Sending keys: %s", a);
-      }),
+      A.sendKeys(first, a),
       second.sendKeys(b),
       goButton.click()]);
   };
