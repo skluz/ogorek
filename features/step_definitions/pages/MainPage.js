@@ -1,7 +1,8 @@
 'use strict';
 
 var Page = require('../pages').Page;
-var Actions = require('../utils/actions');
+require('../utils/actions').static(global);
+require('../utils/validators').static(global);
 
 var Q = require('q');
 var chai = require('chai');
@@ -12,20 +13,19 @@ var expect = chai.expect;
 
 var MainPage = function () {
 
-  var A = new Actions();
-
-  var first = element(by.model('first'));
-  var second = element(by.model('second'));
-  var goButton = $('#gobutton');
+  this.first = element(by.model('first'));
+  this.second = element(by.model('second'));
+  this.goButton = $('#gobutton');
   var table = $('.table tbody');
-
 
   this.add = function(a, b) {
     return Q.all([
-      A.sendKeys(first, a),
-      second.sendKeys(b),
-      goButton.click()]);
+      sendKeys(this.first, a),
+      sendKeys(this.second, b),
+      click(this.goButton),
+      validateElementText(this.goButton, /^1$/)]);
   };
+
 
   this.getArray = function() {
     // 1
