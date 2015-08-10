@@ -19,19 +19,19 @@ var MainPage = function () {
   var table = $('.table tbody');
 
   this.add = function(a, b) {
-    var that = this;
+    var _this = this;
     return Promise.resolve()
       .then(function() {
-        return that.first.sendKeys(a);
+        return sendKeys(_this.first, a);
       })
       .then(function() {
-        return that.second.sendKeys(b);
+        return sendKeys(_this.second, b);
       })
       .then(function() {
-        return that.goButton.click();
+        return click(_this.goButton);
       })
       .then(function() {
-        return validateElementText(that.first, /^1$/);
+        return validateElementText(_this.first, /^1$/);
       })
   };
 
