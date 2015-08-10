@@ -1,9 +1,9 @@
-Feature: Example feature
-  As a user of cucumber.js
-  I want to have documentation on cucumber
-  So that I can concentrate on building awesome applications
+Feature: Hello world!
+  As a developer I want to have nice testing framework
+  so I could write tests fast and have lots of time
+  to watch youtube
 
-  Scenario: Reading documentation
-    Given I am on the Cucumber.js GitHub repository
+  Scenario: Example usage
+    Given I'm on the Main Page
     When I go to the README file
     Then I should see "Usage" as the page title

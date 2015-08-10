@@ -1,6 +1,5 @@
 'use strict';
 
-var Page = require('../pages').Page;
 require('../utils/actions').static(global);
 require('../utils/validators').static(global);
 
@@ -10,13 +9,21 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
+var Page = require('../pages').Page;
+var Select = require('../elements').Select;
 
-var MainPage = function () {
+
+var MainPage = function MainPage () {
+
+  var _this = this;
 
   this.first = element(by.model('first'));
   this.second = element(by.model('second'));
   this.goButton = $('#gobutton');
   var table = $('.table tbody');
+
+  this.operatorSelect = new Select(by.model('operator'));
+
 
   this.add = function(a, b) {
     var _this = this;

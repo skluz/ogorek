@@ -1,25 +1,28 @@
 'use strict';
 
+require('./utils/actions').static(global);
+require('./utils/validators').static(global);
+
+var Q = require('q');
+
 var pages = require('./pages');
 var mainPage = new pages.MainPage();
 
-require('./utils/actions').static(global);
-
-var chai = require('chai');
-var expect = chai.expect;
-
 var HelloSteps = function() {
 
-  this.Given(/^I am on the Cucumber\.js GitHub repository$/, function () {
+  this.Given(/^I'm on the Main Page$/, function () {
     return mainPage.open();
   });
 
   this.When(/^I go to the README file$/, function () {
-    return mainPage.add('raz dwa trzy cztery pięć szcześć', 2);
+    return validateDeepEquals(mainPage.operatorSelect.getOptions(), ['+', '/', '%', '*', '-']);
+    //return validateDeepEquals(mainPage.operatorSelect.getOptions(), ['+', '/A', '%', '*', '-']);
+    //return validateEquals(mainPage.operatorSelect.getSelectedOption(), '+');
   });
 
+
   this.Then(/^I should see "([^"]*)" as the page title$/, function () {
-    return mainPage.validateTitle(/^Super Calculator$/);
+    return mainPage.operatorSelect.select('+');
   });
 
 };
