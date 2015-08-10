@@ -15,8 +15,7 @@ var HelloSteps = function() {
   });
 
   this.When(/^I go to the README file$/, function () {
-    return mainPage.add(1, 2);
-    //return click(mainPage.goButton);
+    return mainPage.add('raz dwa trzy cztery pięć szcześć', 2);
   });
 
   this.Then(/^I should see "([^"]*)" as the page title$/, function () {

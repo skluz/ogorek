@@ -19,11 +19,20 @@ var MainPage = function () {
   var table = $('.table tbody');
 
   this.add = function(a, b) {
-    return Q.all([
-      sendKeys(this.first, a),
-      sendKeys(this.second, b),
-      click(this.goButton),
-      validateElementText(this.goButton, /^1$/)]);
+    var that = this;
+    return Promise.resolve()
+      .then(function() {
+        return that.first.sendKeys(a);
+      })
+      .then(function() {
+        return that.second.sendKeys(b);
+      })
+      .then(function() {
+        return that.goButton.click();
+      })
+      .then(function() {
+        return validateElementText(that.first, /^1$/);
+      })
   };
 
 
