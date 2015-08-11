@@ -27,8 +27,11 @@ var CalculatorPage = function CalculatorPage () {
     return this.performCalculation(x, y, '*');
   };
 
-  this.performCalculation = function (x, y) {
-    return this.goButton.click();
+  this.performCalculation = function (x, y, operator) {
+    sendKeys(this.firstField, x);
+    this.operatorSelect.select(operator);
+    sendKeys(this.secondField, y);
+    return click(this.goButton);
   };
 
   this.add = function(a, b) {

@@ -38,6 +38,7 @@ var Select = function Select (locator) {
 
   this.select = function (option) {
     return validateArrayContains(this.getOptions(), option).then(function() {
+      logger.info('select: [%s]', option);
       return _this.element.element(by.cssContainingText('option', option)).click();
     }, function (err) {
       logger.error('Can\'t select chosen option: [' + option + ']');
