@@ -3,20 +3,11 @@
 require('../utils/actions').static(global);
 require('../utils/validators').static(global);
 
-var Q = require('q');
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
-var expect = chai.expect;
-
 var Page = require('../pages').Page;
 var Select = require('../elements').Select;
 var Table = require('../elements').Table;
 
-
 var CalculatorPage = function CalculatorPage () {
-
-  var _this = this;
 
   this.firstField = element(by.model('first'));
   this.secondField = element(by.model('second'));

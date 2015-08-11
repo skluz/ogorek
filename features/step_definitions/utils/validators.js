@@ -1,6 +1,7 @@
 'use strict';
 
 var logger = require('../utils/logger')(module);
+
 var Q = require('q');
 
 var chai = require('chai');

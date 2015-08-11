@@ -6,3 +6,7 @@ improvements:
 
 todo:
 - only one import
+- rest interface
+- assertions inside flow
+- self created class
+- prototype functions
