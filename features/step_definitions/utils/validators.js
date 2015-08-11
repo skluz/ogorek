@@ -29,15 +29,23 @@ function validateDeepEquals(promise, expected) {
   });
 };
 
-function elementTextShouldBeEmpty(promise) {
-  return validateElementText(promise, /^$/);
+function validateTextEquals(text, expected) {
+  return expect(text).to.equals(expected);
 };
 
-function validateElementText(element, regexp) {
-  logger.info('validateElementText - element: [%s], regexp: [%s] - start', element.locator(), regexp);
-  //return expect(element.getText()).to.eventually.match(regexp);
+function validateElementTextEquals(element, expected) {
   return element.getText().then(function(text) {
-    logger.info('validateElementText - expected: [%s], value: [%s]', element.locator(), regexp, text);
+    logger.info('validateElementTextEquals - expected: [%s], value: [%s]', expected, text);
+    return expect(text).to.equal(expected);
+  }, function(err) {
+    logger.error('Error: ', err);
+    return Q.reject(err);
+  });
+};
+
+function validateElementTextMatch(element, regexp) {
+  return element.getText().then(function(text) {
+    logger.info('validateElementTextEquals - expected: [%s], value: [%s]', regexp, text);
     return expect(text).to.match(regexp);
   }, function(err) {
     logger.error('Error: ', err);
@@ -55,8 +63,8 @@ function validateArrayContains(array, key) {
 };
 
 exports.static = function(scope) {
-  scope.validateElementText = validateElementText;
-  scope.validateDeepEquals = validateDeepEquals;
-  scope.validateEquals = validateEquals;
+  scope.validateElementTextEquals = validateElementTextEquals;
+  scope.validateElementTextMatch = validateElementTextMatch;
   scope.validateArrayContains = validateArrayContains;
+  scope.validateTextEquals = validateTextEquals;
 };
