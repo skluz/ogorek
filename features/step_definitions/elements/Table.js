@@ -17,6 +17,14 @@ var Table = function Table (locator) {
   var _this = this;
   this.root = element(locator);
 
+  this.header = function () {
+
+  };
+
+  this.headerCell = function(column) {
+
+  };
+
   this.row = function (i) {
     return this._array().then(function(a) {
       return a[i];

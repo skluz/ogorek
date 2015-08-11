@@ -23,7 +23,7 @@ var CalculatorSteps = function() {
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
-    return expect(calculatorPage.resultTable.cell(0, 2)).to.eventually.be.equal('6');
+    return expect(calculatorPage.resultTable.cell(0, 2).getText()).to.eventually.be.equal(result);
   });
 
 };

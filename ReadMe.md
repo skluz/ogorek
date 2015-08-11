@@ -6,4 +6,4 @@ improvements:
 
 todo:
 - validation in Elements
-- 
+- mess with validation (when use promise and when value)
