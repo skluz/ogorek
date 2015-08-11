@@ -1,6 +1,8 @@
 'use strict';
 
 require('../utils/validators').static(global);
+var logger = require('../utils/logger')(module);
+
 
 var Element = require('./').Element;
 var Q = require('q');
@@ -10,9 +12,9 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
-
-
 var Select = function Select (locator) {
+
+  var _this = this;
 
   //Element.apply(this, arguments);
 
@@ -25,11 +27,10 @@ var Select = function Select (locator) {
   };
 
   this.getSelectedOption = function () {
-    var root = this.element;
     var selectedOptionLocator = by.css('option[selected="selected"]');
-    return root.all(selectedOptionLocator).count().then(function (count) {
+    return _this.element.all(selectedOptionLocator).count().then(function (count) {
       if(count == 1)
-        return root.all(selectedOptionLocator).first().getText();
+        return _this.element.all(selectedOptionLocator).first().getText();
       else
         return Q.reject(new Error('There should be just one element selected'));
     });
@@ -37,9 +38,10 @@ var Select = function Select (locator) {
 
   this.select = function (option) {
     return validateArrayContains(this.getOptions(), option).then(function() {
-
+      return _this.element.element(by.cssContainingText('option', option)).click();
     }, function (err) {
-      return Q.reject('Array doesnt contains option: ' + option, err);
+      logger.error('Can\'t select chosen option: [' + option + ']');
+      return Q.reject(err);
     })
   };
 

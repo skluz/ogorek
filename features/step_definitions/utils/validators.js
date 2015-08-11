@@ -8,28 +8,29 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
 
-function validateEquals(value, expected) {
-  return value.then(function (array) {
-    logger.info('validateDeepEquals [%s] - expected: [%s], value: [%s]', array.constructor.name, array, expected);
-    return expect(array).to.equal(expected);
+function validateEquals(promise, expected) {
+  return promise.then(function (value) {
+    logger.info('validateEquals [%s] - expected: [%s], value: [%s]', value.constructor.name, value, expected);
+    return expect(value).to.equal(expected);
   }, function(err) {
     logger.error('Error: ', err);
     return Q.reject(err);
   });
 };
 
-function validateDeepEquals(value, expected) {
-  return value.then(function (array) {
-    logger.info('validateDeepEquals [%s] - expected: [%s], value: [%s]', array.constructor.name, array, expected.join(','));
-    return expect(array).to.deep.equal(expected);
+function validateDeepEquals(promise, expected) {
+  return promise.then(function (value) {
+    // TODO: using .join for nicer String representation - can fail in case different object
+    logger.info('validateDeepEquals [%s] - expected: [%s], value: [%s]', value.constructor.name, expected, value.join(','));
+    return expect(value).to.deep.equal(expected);
   }, function(err) {
     logger.error('Error: ', err);
     return Q.reject(err);
   });
 };
 
-function elementTextShouldBeEmpty(element) {
-  return validateElementText(element, /^$/);
+function elementTextShouldBeEmpty(promise) {
+  return validateElementText(promise, /^$/);
 };
 
 function validateElementText(element, regexp) {
@@ -47,12 +48,10 @@ function validateElementText(element, regexp) {
 function validateArrayContains(array, key) {
   return array.then(function (values) {
     logger.info('validateArrayContains - array: [%s], key: [%s]', values, key);
-    return expect(values).to.contains(key).then(function () {
-      return Q(this);
+    return expect(values).to.contains(key);
     }, function(err) {
-      return Q.reject('dupa!', err);
-    })
-  });
+      return Q.reject(err);
+    });
 };
 
 exports.static = function(scope) {

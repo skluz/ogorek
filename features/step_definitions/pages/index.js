@@ -1,4 +1,4 @@
 'use strict';
 
 exports.Page = require('./Page');
-exports.MainPage = require('./MainPage');
+exports.CalculatorPage = require('./CalculatorPage');

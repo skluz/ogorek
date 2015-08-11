@@ -13,17 +13,23 @@ var Page = require('../pages').Page;
 var Select = require('../elements').Select;
 
 
-var MainPage = function MainPage () {
+var CalculatorPage = function CalculatorPage () {
 
   var _this = this;
 
-  this.first = element(by.model('first'));
-  this.second = element(by.model('second'));
+  this.firstField = element(by.model('first'));
+  this.secondField = element(by.model('second'));
   this.goButton = $('#gobutton');
-  var table = $('.table tbody');
-
+  this.resultTable = $('.table tbody');
   this.operatorSelect = new Select(by.model('operator'));
 
+  this.multiply = function(x, y) {
+    return this.performCalculation(x, y, '*');
+  };
+
+  this.performCalculation = function (x, y) {
+    return this.goButton.click();
+  };
 
   this.add = function(a, b) {
     var _this = this;
@@ -75,6 +81,6 @@ var MainPage = function MainPage () {
 
 };
 
-MainPage.prototype = new Page();
+CalculatorPage.prototype = new Page();
 
-module.exports = MainPage;
+module.exports = CalculatorPage;
