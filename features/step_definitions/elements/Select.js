@@ -3,7 +3,6 @@
 require('../utils/validators').static(global);
 var logger = require('../utils/logger')(module);
 
-
 var Element = require('./').Element;
 var Q = require('q');
 
@@ -27,15 +26,17 @@ var Select = function Select (locator) {
     var selectedOptionLocator = by.css('option[selected="selected"]');
     return _this.root.all(selectedOptionLocator).count().then(function (count) {
       if(count == 1)
-        return _this.root.all(selectedOptionLocator).first().getText();
+        return _this.root.all(selectedOptionLocator).first().getText().then(function(text) {
+          logger.info('getSelectedOption - element: [%s], selected option: [%s]', _this.root.locator(), text);
+        })
       else
         return Q.reject(new Error('There should be just one element selected'));
     });
   };
 
   this.select = function (option) {
-    return validateArrayContains(this.getOptions(), option).then(function() {
-      logger.info('select: [%s]', option);
+    return expectArrayContains(this.getOptions(), option).then(function() {
+      logger.info('select option - element: [%s], option: [%s]', _this.root.locator(), option);
       return _this.root.element(by.cssContainingText('option', option)).click();
     }, function (err) {
       logger.error('Can\'t select chosen option: [' + option + ']');

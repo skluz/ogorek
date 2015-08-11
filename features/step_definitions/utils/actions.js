@@ -3,9 +3,13 @@
 var logger = require('../utils/logger')(module);
 var Q = require('q');
 
+function valueString(value) {
+  return value.locator().toString();
+};
+
 function sendKeys(element, keys) {
   return element.sendKeys(keys).then(function() {
-    logger.info('sendKeys: [%s][%s]', element.locator(), keys);
+    logger.info('sendKeys - element: [%s], value: [%s]', valueString(element), keys);
   }, function(err) {
     return Q.reject(err);
   });
@@ -13,7 +17,7 @@ function sendKeys(element, keys) {
 
 function click(element) {
   return element.click().then(function() {
-    logger.info('click: ' + element.locator());
+    logger.info('click - element: [%s]', valueString(element));
   }, function(err) {
     return Q.reject(err);
   });

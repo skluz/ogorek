@@ -22,7 +22,7 @@ var CalculatorPage = function CalculatorPage () {
   this.secondField = element(by.model('second'));
   this.goButton = $('#gobutton');
 
-  this.resultTable = new Table(by.css('.table tbody'));
+  this.resultTable = new Table(by.css('.table'));
   this.operatorSelect = new Select(by.model('operator'));
 
   this.multiply = function(x, y) {
@@ -36,53 +36,9 @@ var CalculatorPage = function CalculatorPage () {
     return click(this.goButton);
   };
 
-  this.add = function(a, b) {
-    var _this = this;
-    return Promise.resolve()
-      .then(function() {
-        return sendKeys(_this.first, a);
-      })
-      .then(function() {
-        return sendKeys(_this.second, b);
-      })
-      .then(function() {
-        return click(_this.goButton);
-      })
-      .then(function() {
-        return validateElementText(_this.first, /^1$/);
-      })
-  };
-
-
-  this.getArray = function() {
-    // 1
-    //table.all(by.tagName('th')).map(function(th) {
-    //    return th.getText();
-    //}).then(function (result) {
-    //    done(result);
-    //});
-
-    // 2
-    //Q.when(result, done);
-
-    //var result = table.all(by.tagName('th')).map(function(th) {
-    //    return th.getText();
-    //});
-    //
-    //expect(result).to.eventually.be.fulfilled.and.notify(done);
-
-    return table.all(by.tagName('tr')).map(function(tr) {
-      var cells = tr.all(by.tagName('td')).map(function(td) {
-        return td.getText();
-      })
-      return cells;
-    });
-
-  }
-
   this.open = function() {
     return Page.prototype.open.call(this, '/protractor-demo/');
-  }
+  };
 
 };
 

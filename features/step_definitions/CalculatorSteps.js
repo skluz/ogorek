@@ -23,7 +23,28 @@ var CalculatorSteps = function() {
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
-    return expect(calculatorPage.resultTable.cell(0, 2).getText()).to.eventually.be.equal(result);
+    // chain example:
+
+    return Promise.resolve().then(function() {
+        return expectElementEquals(calculatorPage.resultTable.cellValue(0, 2), result)
+      }).then(function() {
+        return expectElementDeepEquals(calculatorPage.resultTable.headerValues(), ['Time', 'Expression', 'Result']);
+      }).then(function() {
+        return expectElementEquals(calculatorPage.resultTable.headerCell(0), 'Time')
+      }).then(function() {
+        return expectArrayLength(calculatorPage.resultTable.headerValues(), 4);
+      });
+
+    // or
+
+    //return expectElementEquals(calculatorPage.resultTable.cellValue(0, 2), result).then(function() {
+    //  return expectElementDeepEquals(calculatorPage.resultTable.headerValues(), ['Time', 'Expression', 'Result']).then(function() {
+    //    return expectElementEquals(calculatorPage.resultTable.headerCell(0), 'Time').then(function() {
+    //      return expectArrayLength(calculatorPage.resultTable.headerValues(), 4);
+    //    })
+    //  })
+    //})
+
   });
 
 };

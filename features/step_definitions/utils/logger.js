@@ -12,13 +12,15 @@ var label = function(callingModule) {
 };
 
 module.exports = function(callingModule) {
-  return new winston.Logger({
+  var customLogger = new (winston.Logger)({
       transports: [
         new winston.transports.Console({
           timestamp: true,
-          label: label(callingModule)
+          label: label(callingModule),
+          colorize: true
         })
       ]
     }
-  )
+  );
+  return customLogger;
 };

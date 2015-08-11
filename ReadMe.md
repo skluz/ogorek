@@ -2,8 +2,7 @@ improvements:
 - removed callbacks - current version uses only promises (except hooks)
 - no 'actions' layer - complicated logic moved to specific pages classes
 - common actions & validations methods (with logging)
-- debug possible: browser.pause()
+- debug possible: browser.pause() !!!
 
 todo:
-- validation in Elements
-- mess with validation (when use promise and when value)
+- only one import

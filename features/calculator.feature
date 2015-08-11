@@ -8,7 +8,7 @@ Feature: Hello world!
     When I multiply '2' by '3'
     Then Result should be '6'
 
-#  Scenario: Multiplication
+#  Scenario: Multiplication 2
 #    Given I'm on the calculator page
 #    When I fill First Field with 2
 #    And I fill Second Field with 3
