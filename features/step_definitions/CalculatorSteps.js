@@ -23,6 +23,7 @@ var CalculatorSteps = function() {
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
+
     // chain example:
 
     return Promise.resolve().then(function() {

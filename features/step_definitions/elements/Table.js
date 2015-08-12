@@ -20,6 +20,12 @@ var Table = function Table (locator) {
     })
   };
 
+  /**
+   * Array of strings containing values from chosen row
+   * @param row number of row
+   * @returns {*|webdriver.promise.Promise} A promise that will be resolved
+   * with table row visible text.
+   */
   this.rowValues = function (row) {
     return this._arrayValues().then(function(a) {
       return a[row];

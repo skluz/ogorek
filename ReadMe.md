@@ -6,7 +6,13 @@ improvements:
 
 todo:
 - only one import
-- rest interface
+- rest interface - restify
 - assertions inside flow
 - self created class
-- prototype functions
+- prototype instead of object functions
+- Q.reject - confirm that this is right usage
+- naming conventions Page.js vs page.js
+- table cell click
+- isDisplayed, isEnabled, etc.
+- builder for rest entries
+- add Panel

@@ -1,4 +1,0 @@
-- does Q.all ensure order of execution?
-- is Q.reject good idea?
-- naming convention: MainPage.js vs mainPage.js
-- class functions prototype vs internal
