@@ -79,6 +79,17 @@ function expectArrayLength(array, length) {
   });
 };
 
+function expectElementEnabledStatus(element, expectedStatus) {
+  return element.isEnabled().then(function(isEnabled) {
+    logger.info('expectElementEnabledStatus - element: [%s], expected: [%s], value: [%s]', element.locator().toString(), isEnabled, expectedStatus);
+    return expect(isEnabled).to.be.equal(expectedStatus);
+  });
+};
+
+function expectElementIsEnabled(element) {
+  return expectElementEnabledStatus(element, true);
+}
+
 exports.static = function(scope) {
   scope.expectElementEquals = expectElementEquals;
   scope.expectElementDeepEquals = expectElementDeepEquals;
@@ -86,4 +97,5 @@ exports.static = function(scope) {
   scope.expectElementTextMatch = expectElementTextMatch;
   scope.expectArrayContains = expectArrayContains;
   scope.expectArrayLength = expectArrayLength;
+  scope.expectElementIsEnabled = expectElementIsEnabled;
 };

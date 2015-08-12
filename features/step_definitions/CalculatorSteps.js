@@ -3,14 +3,13 @@
 require('./utils/actions').static(global);
 require('./utils/validators').static(global);
 
+var calculatorRestManager = new (require('./rest')).CalculatorRestManager;
+var calculatorPage = new (require('./pages')).CalculatorPage;
+
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var expect = chai.expect;
-
-
-var pages = require('./pages');
-var calculatorPage = new pages.CalculatorPage();
 
 var CalculatorSteps = function() {
 
@@ -24,16 +23,16 @@ var CalculatorSteps = function() {
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
 
-    // chain example:
+    // assertions chain example:
 
     return Promise.resolve().then(function() {
-        return expectElementEquals(calculatorPage.resultTable.cellValue(0, 2), result)
+        return expectElementEquals(calculatorPage.tablePanel.resultTable.cellValue(0, 2), result)
       }).then(function() {
-        return expectElementDeepEquals(calculatorPage.resultTable.headerValues(), ['Time', 'Expression', 'Result']);
+        return expectElementDeepEquals(calculatorPage.tablePanel.resultTable.headerValues(), ['Time', 'Expression', 'Result']);
       }).then(function() {
-        return expectElementEquals(calculatorPage.resultTable.headerCell(0), 'Time')
+        return expectElementEquals(calculatorPage.tablePanel.resultTable.headerCell(0), 'Time')
       }).then(function() {
-        return expectArrayLength(calculatorPage.resultTable.headerValues(), 4);
+        return expectElementIsEnabled(calculatorPage.goButton);
       });
 
     // or
@@ -46,6 +45,12 @@ var CalculatorSteps = function() {
     //  })
     //})
 
+  });
+
+  this.Then(/^Some rest step should work$/, function() {
+    return calculatorRestManager.get().then(function(response) {
+      console.log(response.name);
+    });
   });
 
 };

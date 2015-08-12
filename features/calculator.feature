@@ -7,6 +7,7 @@ Feature: Hello world!
     Given I'm on the calculator page
     When I multiply '2' by '3'
     Then Result should be '6'
+    And Some rest step should work
 
 #  Scenario: Multiplication 2
 #    Given I'm on the calculator page

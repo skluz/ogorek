@@ -7,9 +7,7 @@ var expect = chai.expect;
 
 var Q = require('q');
 
-var Page = function () {
-  this.x = 'dupa';
-};
+var Page = function () {};
 
 Page.prototype.open = function(url) {
   logger.info('Opening page: %s', url);

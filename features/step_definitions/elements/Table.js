@@ -38,6 +38,7 @@ var Table = function Table (locator) {
     });
   };
 
+
   this._arrayValues = function() {
     return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
       var cells = tr.all(by.tagName('td')).map(function(td) {

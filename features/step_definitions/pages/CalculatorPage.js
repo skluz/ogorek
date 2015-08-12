@@ -13,26 +13,29 @@ var CalculatorPage = function CalculatorPage () {
   this.secondField = element(by.model('second'));
   this.goButton = $('#gobutton');
 
-  this.resultTable = new Table(by.css('.table'));
+  this.tablePanel = {
+    resultTable : new Table(by.css('.table'))
+  };
+
   this.operatorSelect = new Select(by.model('operator'));
-
-  this.multiply = function(x, y) {
-    return this.performCalculation(x, y, '*');
-  };
-
-  this.performCalculation = function (x, y, operator) {
-    sendKeys(this.firstField, x);
-    this.operatorSelect.select(operator);
-    sendKeys(this.secondField, y);
-    return click(this.goButton);
-  };
-
-  this.open = function() {
-    return Page.prototype.open.call(this, '/protractor-demo/');
-  };
 
 };
 
 CalculatorPage.prototype = new Page();
+
+CalculatorPage.prototype.multiply = function(x, y) {
+  return this.performCalculation(x, y, '*');
+};
+
+CalculatorPage.prototype.performCalculation = function (x, y, operator) {
+  sendKeys(this.firstField, x);
+  this.operatorSelect.select(operator);
+  sendKeys(this.secondField, y);
+  return click(this.goButton);
+};
+
+CalculatorPage.prototype.open = function() {
+  return Page.prototype.open.call(this, '/protractor-demo/');
+};
 
 module.exports = CalculatorPage;
