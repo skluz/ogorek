@@ -17,7 +17,7 @@ todo:
 + naming conventions Page.js vs page.js: class should start with uppercase letter
 - table cell click
 - builder for rest entries
-- add Panel
+- add Panel (to handle inside elements)
 - check stack trace in case ie. expectElementIsEnabled
 - using winston to handle/log exceptions
 - samplers for GUI as well
