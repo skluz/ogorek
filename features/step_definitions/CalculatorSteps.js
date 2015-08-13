@@ -48,7 +48,7 @@ var CalculatorSteps = function() {
   });
 
   this.Then(/^Some rest step should work$/, function() {
-    return calculatorRestManager.get().then(function(response) {
+    return calculatorRestManager.getAll().then(function(response) {
       console.log(response.name);
     });
   });

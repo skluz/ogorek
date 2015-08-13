@@ -1,4 +1,4 @@
 'use strict';
 
-exports.RestManager = require('./RestManager');
+exports.AbstractRestManager = require('./AbstractRestManager');
 exports.CalculatorRestManager = require('./CalculatorRestManager');

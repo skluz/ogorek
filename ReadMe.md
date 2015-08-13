@@ -4,19 +4,20 @@ improvements:
 - common actions & validations methods (with logging)
 - debug possible: browser.pause()
 - debug from intellij
-- rest manager in flow
+- rest manager inside protractor flow
 
 todo:
-- better import strategy
-- steps in many directories
+- better import strategy (requirejs?)
+- steps in many directories - for better merge
 + rest interface - restify
 - assertions inside flow ??
-+ self created class
+- self created class
 + prototype instead of object functions
 - Q.reject - confirm that this is right usage
 + naming conventions Page.js vs page.js: class should start with uppercase letter
 - table cell click
-+ isDisplayed, isEnabled, etc.
 - builder for rest entries
 - add Panel
 - check stack trace in case ie. expectElementIsEnabled
+- using winston to handle/log exceptions
+- samplers for GUI as well
