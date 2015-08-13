@@ -5,9 +5,11 @@ Feature: Hello world!
 
   Scenario: Multiplication
     Given I'm on the calculator page
+    And I'm testing2
     When I multiply '2' by '3'
-    Then Result should be '6'
-    And Some rest step should work
+    And I'm testing
+#    Then Result should be '6'
+#    And Some rest step should work
 
 #  Scenario: Multiplication 2
 #    Given I'm on the calculator page

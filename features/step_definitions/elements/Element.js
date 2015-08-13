@@ -1,7 +1,7 @@
 'use strict';
 
-var Element = function Element(locator) {
-  this.element = element(locator);
+var Element = function Element(by) {
+  this.element = element(by);
 };
 
 Element.prototype.toString = function() {

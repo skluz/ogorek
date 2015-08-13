@@ -21,6 +21,15 @@ var CalculatorSteps = function() {
     return calculatorPage.multiply(x, y);
   });
 
+  this.Given(/^I'm testing$/, function() {
+    return calculatorPage.test();
+  });
+
+  this.Given(/^I'm testing2$/, function() {
+    return calculatorPage.test2();
+  });
+
+
   this.Then(/^Result should be '(.*)'$/, function (result) {
 
     // assertions chain example:

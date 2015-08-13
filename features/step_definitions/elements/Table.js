@@ -4,9 +4,9 @@ require('../utils/validators').static(global);
 
 var Element = require('./').Element;
 
-var Table = function Table (locator) {
+var Table = function Table (by) {
 
-  this.root = element(locator);
+  this.root = element(by);
 
   this.headerValues = function () {
     return this.root.element(by.tagName('thead')).all(by.tagName('th')).map(function(th) {
