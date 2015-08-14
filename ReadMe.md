@@ -23,3 +23,4 @@ todo:
 - check stack trace in case ie. expectElementIsEnabled
 - using winston to handle/log exceptions
 - samplers for GUI as well
+- universal steps (eg: click on element defined by 'css':'.table')
