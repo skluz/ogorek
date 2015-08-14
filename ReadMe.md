@@ -6,6 +6,7 @@ improvements:
 - debug from intellij
 - rest manager inside protractor flow
 - container
+- logging framework (levels, file log, etc)
 
 todo:
 - better import strategy (requirejs?)
