@@ -23,10 +23,9 @@ var CalculatorSteps = function() {
   });
 
   this.Given(/^I'm testing$/, function() {
-    var cell = calculatorPage.resultTable.cellElement(0, 0);
-    return cell.then(function(value) {
-      console.log("Value: " + value);
-    })
+    return calculatorPage.resultTable.cellElement(0, 0).then(function(text) {
+      console.log("Text: " + text);
+    });
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {

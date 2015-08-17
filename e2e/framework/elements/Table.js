@@ -60,18 +60,7 @@ var Table = function Table (locator, definition) {
   };
 
   this.cellElement = function (row, column) {
-    return this._arrayElements().then(function(a) {
-      return a[row][column];
-    });
-  };
-
-  this._arrayElements = function() {
-    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
-      var cells = tr.all(by.tagName('td')).map(function(td) {
-        return Q(td);
-      })
-      return cells;
-    });
+    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).get(row).element.all(by.tagName('td').get(column));
   };
 
 };
