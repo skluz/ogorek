@@ -23,7 +23,10 @@ var CalculatorSteps = function() {
   });
 
   this.Given(/^I'm testing$/, function() {
-    return expectElementDeepEquals(calculatorPage.resultTable.columnValues(1), ['a'], 'checking result table!');
+    var cell = calculatorPage.resultTable.cellElement(0, 0);
+    return cell.then(function(value) {
+      console.log("Value: " + value);
+    })
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
@@ -31,11 +34,11 @@ var CalculatorSteps = function() {
     // assertions chain example:
 
     return Promise.resolve().then(function() {
-        return expectElementEquals(calculatorPage.tablePanel.resultTable.cellValue(0, 2), result)
+        return expectElementEquals(calculatorPage.resultTable.cellTextValue(0, 2), result)
       }).then(function() {
-        return expectElementDeepEquals(calculatorPage.tablePanel.resultTable.headerValues(), ['Time', 'Expression', 'Result']);
+        return expectElementDeepEquals(calculatorPage.resultTable.headerTextValues(), ['Time', 'Expression', 'Result']);
       }).then(function() {
-        return expectElementEquals(calculatorPage.tablePanel.resultTable.headerCell(0), 'Time')
+        return expectElementEquals(calculatorPage.resultTable.headerCell(0), 'Time')
       }).then(function() {
         return expectElementIsEnabled(calculatorPage.goButton);
       });

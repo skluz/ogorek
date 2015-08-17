@@ -17,7 +17,13 @@ var CalculatorPage = function () {
   this.secondField = element(by.model('second'));
   this.goButton = $('#gobutton');
 
-  this.resultTable = new Table(by.css('.table'));
+  this.resultTable = new Table(by.css('.table'), {
+    columns: [
+      {name: 'time', type: 'text'},
+      {name: 'expression', type: 'text'},
+      {name: 'time', type: 'text'}
+    ]
+  });
 
   this.head = new Container(by.css('.table thead'), {
     header: by.tagName('tr')
