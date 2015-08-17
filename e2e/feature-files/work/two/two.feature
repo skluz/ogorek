@@ -1,11 +1,9 @@
-Feature: Hello world!
-  As a developer I want to have nice testing framework
-  so I could write tests fast and have lots of time
-  to watch youtube
+Feature: Two
+  Second scenario
 
-  Scenario: Multiplication
+  @skip
+  Scenario: Scenario from feature two
     Given I'm on the calculator page
-    And I'm testing2
     When I multiply '2' by '3'
     And I'm testing
 #    Then Result should be '6'

@@ -1,6 +1,10 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['features/calculator.feature'],
+  suites: {
+    all: 'e2e/feature-files/**/*.feature',
+    import: 'e2e/feature-files/import/*.feature',
+    work: 'e2e/feature-files/work/**/*.feature',
+  },
   capabilities: {
     browserName: 'chrome'
   },
@@ -8,6 +12,13 @@ exports.config = {
   directConnect: 'true',
   baseUrl: 'http://juliemr.github.io/',
   cucumberOpts: {
-    noSnippets: true
+    noSnippets: true,
+    require: 'e2e/step-definitions/**',
+    tags: '~@skip'
+  },
+  onPrepare: function() {
+    module.exports.dupa = function() {
+      console.log('Dupa');
+    };
   }
 }

@@ -5,17 +5,19 @@ var Q = require('q');
 require('../utils/actions').static(global);
 require('../utils/validators').static(global);
 
-var Page = require('../pages').Page;
+var Page = require('./Page');
 var Select = require('../elements').Select;
 var Table = require('../elements').Table;
 
 var Container = require('../elements').Container;
 
-var CalculatorPage = function CalculatorPage () {
+var CalculatorPage = function () {
 
   this.firstField = element(by.model('first'));
   this.secondField = element(by.model('second'));
   this.goButton = $('#gobutton');
+
+  this.resultTable = new Table(by.css('.table'));
 
   this.head = new Container(by.css('.table thead'), {
     header: by.tagName('tr')
@@ -47,6 +49,10 @@ CalculatorPage.prototype.multiply = function(x, y) {
   return this.performCalculation(x, y, '*');
 };
 
+CalculatorPage.prototype.add = function(x, y) {
+  return this.performCalculation(x, y, '+');
+};
+
 CalculatorPage.prototype.performCalculation = function (x, y, operator) {
   sendKeys(this.firstField, x);
   this.operatorSelect.select(operator);
@@ -58,4 +64,4 @@ CalculatorPage.prototype.open = function() {
   return Page.prototype.open.call(this, '/protractor-demo/');
 };
 
-module.exports = CalculatorPage;
+module.exports = new CalculatorPage();

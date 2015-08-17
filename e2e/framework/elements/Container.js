@@ -1,8 +1,8 @@
 'use strict';
 
-var Container = function Container(by, locators) {
+var Container = function Container(locator, locators) {
 
-  this.element = element(by);
+  this.element = element(locator);
 
   for (var property in locators) {
     if (locators.hasOwnProperty(property)) {

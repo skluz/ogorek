@@ -1,6 +1,6 @@
 'use strict';
 
-var pages = require('../features/step_definitions/pages/index');
+var pages = require('./index');
 var mainPage = new pages.MainPage()
 
 describe("A suite", function() {

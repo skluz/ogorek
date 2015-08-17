@@ -1,6 +1,6 @@
 'use strict';
 
-var logger = require('../utils/logger')(module);
+var logger = require('./logger')(module);
 var Q = require('q');
 
 function valueString(value) {

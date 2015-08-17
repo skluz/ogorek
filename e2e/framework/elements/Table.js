@@ -2,11 +2,11 @@
 
 require('../utils/validators').static(global);
 
-var Element = require('./').Element;
+var Element = require('./Element');
 
-var Table = function Table (by) {
+var Table = function Table (locator) {
 
-  this.root = element(by);
+  this.root = element(locator);
 
   this.headerValues = function () {
     return this.root.element(by.tagName('thead')).all(by.tagName('th')).map(function(th) {
@@ -32,12 +32,20 @@ var Table = function Table (by) {
     });
   };
 
+  this.columnValues = function (column) {
+    return this._arrayValues().then(function (a) {
+      var result = new Array();
+      for(var i = 0; i < a.length; i++)
+        result.push(a[i][column])
+      return result;
+    });
+  };
+
   this.cellValue = function (row, column) {
     return this._arrayValues().then(function(a) {
       return a[row][column];
     });
   };
-
 
   this._arrayValues = function() {
     return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {

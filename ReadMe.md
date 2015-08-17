@@ -10,7 +10,7 @@ improvements:
 
 todo:
 - better import strategy (requirejs?)
-- steps in many directories - for better merge
++ steps in many directories - for better merge
 + rest interface - restify
 - assertions inside flow ??
 - self created class

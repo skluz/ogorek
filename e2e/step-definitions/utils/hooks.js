@@ -1,4 +1,4 @@
-var logger = require('../utils/logger')(module);
+var logger = require('../../framework/utils/logger')(module);
 
 var Hooks = function() {
 
@@ -10,10 +10,19 @@ var Hooks = function() {
     callback();
   });
 
-  this.Before(function (scenario, callback) {
+  this.BeforeScenario(function (event, callback) {
+    var scenario = event.getPayloadItem('scenario');
     var parts = scenario.getUri().split(/[\\/]/);
     var fileName = parts[parts.length - 2] + '/' + parts.pop();
     logger.info("[%s:%s] Scenario: %s", fileName, scenario.getLine(), scenario.getName());
+    callback();
+  });
+
+  this.BeforeFeature(function (event, callback) {
+    var feature = event.getPayloadItem('feature');
+    var parts = feature.getUri().split(/[\\/]/);
+    var fileName = parts[parts.length - 2] + '/' + parts.pop();
+    logger.info("[%s:%s] Feature: %s", fileName, feature.getLine(), feature.getName());
     callback();
   });
 

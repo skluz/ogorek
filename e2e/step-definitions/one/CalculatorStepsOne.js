@@ -1,10 +1,10 @@
 'use strict';
 
-require('./utils/actions').static(global);
-require('./utils/validators').static(global);
+require('../../framework/utils/actions').static(global);
+require('../../framework/utils/validators').static(global);
 
-var calculatorRestManager = new (require('./rest')).CalculatorRestManager;
-var calculatorPage = new (require('./pages')).CalculatorPage;
+var calculatorRestManager = require('../../framework/rest').CalculatorRestManager;
+var calculatorPage = require('../../framework/pages').CalculatorPage;
 
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
@@ -18,17 +18,13 @@ var CalculatorSteps = function() {
   });
 
   this.When(/^I multiply '(.*)' by '(.*)'$/, function (x, y) {
+    calculatorPage.add(x, y);
     return calculatorPage.multiply(x, y);
   });
 
   this.Given(/^I'm testing$/, function() {
-    return calculatorPage.test();
+    return expectElementDeepEquals(calculatorPage.resultTable.columnValues(1), ['a'], 'checking result table!');
   });
-
-  this.Given(/^I'm testing2$/, function() {
-    return calculatorPage.test2();
-  });
-
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
 
