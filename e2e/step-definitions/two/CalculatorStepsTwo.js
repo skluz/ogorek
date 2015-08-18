@@ -4,6 +4,7 @@ require('../../framework/utils/actions').static(global);
 require('../../framework/utils/validators').static(global);
 
 var calculatorRestManager = require('../../framework/rest').CalculatorRestManager;
+var EntrySamplers = require('../../framework/rest').EntrySamplers;
 var calculatorPage = require('../../framework/pages').CalculatorPage;
 
 var chai = require('chai');
@@ -18,14 +19,13 @@ var CalculatorSteps = function() {
   });
 
   this.When(/^I multiply '(.*)' by '(.*)'$/, function (x, y) {
-    calculatorPage.add(x, y);
     return calculatorPage.multiply(x, y);
   });
 
   this.Given(/^I'm testing$/, function() {
-    return calculatorPage.resultTable.cellElement(0, 0).then(function(text) {
-      console.log("Text: " + text);
-    });
+    var entry = EntrySamplers.byName('one');
+    console.log('Entry:');
+    console.log(entry);
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
@@ -37,9 +37,11 @@ var CalculatorSteps = function() {
       }).then(function() {
         return expectElementDeepEquals(calculatorPage.resultTable.headerTextValues(), ['Time', 'Expression', 'Result']);
       }).then(function() {
-        return expectElementEquals(calculatorPage.resultTable.headerCell(0), 'Time')
+        return expectElementEquals(calculatorPage.resultTable.headerCellTextValue(0), 'Time')
       }).then(function() {
         return expectElementIsEnabled(calculatorPage.goButton);
+      }).then(function() {
+        return expectElementEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), result, "Checking result");
       });
 
     // or

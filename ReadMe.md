@@ -17,10 +17,11 @@ todo:
 + prototype instead of object functions
 - Q.reject - confirm that this is right usage
 + naming conventions Page.js vs page.js: class should start with uppercase letter
-- table cell click
-- builder for rest entries
++ table cell click
++ builder for rest entries
 + add Panel (to handle inside elements)
 - check stack trace in case ie. expectElementIsEnabled
 - using winston to handle/log exceptions
 - samplers for GUI as well
 - universal steps (eg: click on element defined by 'css':'.table')
+- creating bean from page elements -

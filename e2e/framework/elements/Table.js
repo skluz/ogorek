@@ -6,12 +6,13 @@ var Q = require('q');
 
 var Element = require('./Element');
 
-var Table = function Table (locator, definition) {
+var Table = function Table(locator, definition) {
 
+  var _this = this;
   this.root = element(locator);
   this.definition = definition;
 
-  this.headerTextValues = function () {
+  this.headerTextValues = function() {
     return this.root.element(by.tagName('thead')).all(by.tagName('th')).map(function(th) {
       return th.getText();
     });
@@ -29,13 +30,13 @@ var Table = function Table (locator, definition) {
    * @returns {*|webdriver.promise.Promise} A promise that will be resolved
    * with table row visible text.
    */
-  this.rowTextValues = function (row) {
+  this.rowTextValues = function(row) {
     return this._arrayTextValues().then(function(a) {
       return a[row];
     });
   };
 
-  this.columnTextValues = function (column) {
+  this.columnTextValues = function(column) {
     return this._arrayTextValues().then(function (a) {
       var result = new Array();
       for(var i = 0; i < a.length; i++)
@@ -44,7 +45,7 @@ var Table = function Table (locator, definition) {
     });
   };
 
-  this.cellTextValue = function (row, column) {
+  this.cellTextValue = function(row, column) {
     return this._arrayTextValues().then(function(a) {
       return a[row][column];
     });
@@ -59,8 +60,38 @@ var Table = function Table (locator, definition) {
     });
   };
 
-  this.cellElement = function (row, column) {
-    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).get(row).element.all(by.tagName('td').get(column));
+  this.cellElement = function(row, column) {
+    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column);
+  };
+
+  this.beans = function() {
+    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
+      var result = new Object;
+      for(var i = 0; i < _this.definition.columns.length; i++) {
+        var td = tr.all(by.tagName('td')).get(i);
+        var value = _this._beanValue(_this.definition.columns[i].type, td);
+        result[_this.definition.columns[i].name] = value;
+      }
+      return result;
+    });
+  };
+
+  this._beanValue = function(type, td) {
+    switch(type) {
+      case 'text':
+        return td.getText().then(function(text) {
+          return text;
+        });
+        break;
+      default:
+        throw new Error('Bean type: ' + type + ' not implemented');
+    }
+  };
+
+  this.rowBean = function(row) {
+    return this.beans().then(function(beans) {
+      return beans[row];
+    });
   };
 
 };

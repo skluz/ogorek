@@ -12,13 +12,9 @@ exports.config = {
   directConnect: 'true',
   baseUrl: 'http://juliemr.github.io/',
   cucumberOpts: {
-    noSnippets: true,
     require: 'e2e/step-definitions/**',
     tags: '~@skip'
   },
   onPrepare: function() {
-    module.exports.dupa = function() {
-      console.log('Dupa');
-    };
   }
 }

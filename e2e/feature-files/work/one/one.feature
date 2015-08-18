@@ -7,7 +7,7 @@ Feature: Hello world 2!
     Given I'm on the calculator page
     When I multiply '2' by '3'
     And I'm testing
-#    Then Result should be '6'
+    Then Result should be '6'
 #    And Some rest step should work
 
 #  Scenario: Multiplication 2

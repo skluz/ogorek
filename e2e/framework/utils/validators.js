@@ -19,7 +19,7 @@ function valueClass(value) {
 
 function expectElementEquals(promise, expected, message) {
   return promise.then(function (value) {
-    logger.info('expectElementEquals [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expected, value);
+    logger.info('expectElementEquals [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expected, value, message);
     return expect(value).to.equal(expected, message);
   }, function(err) {
     logger.error('Error: ', err);

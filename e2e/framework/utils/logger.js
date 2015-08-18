@@ -18,7 +18,8 @@ module.exports = function(callingModule) {
         new winston.transports.Console({
           //timestamp: true,
           label: label(callingModule),
-          colorize: true
+          colorize: true,
+          handleExceptions: true
         })
       ]
     }

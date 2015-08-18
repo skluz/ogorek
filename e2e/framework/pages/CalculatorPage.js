@@ -21,7 +21,7 @@ var CalculatorPage = function () {
     columns: [
       {name: 'time', type: 'text'},
       {name: 'expression', type: 'text'},
-      {name: 'time', type: 'text'}
+      {name: 'result', type: 'text'}
     ]
   });
 
@@ -41,12 +41,6 @@ CalculatorPage.prototype = new Page();
 
 CalculatorPage.prototype.test = function() {
   return this.head.header.getText().then(function(text) {
-    console.log(text);
-  })
-};
-
-CalculatorPage.prototype.test2 = function() {
-  return this.body.header.getText().then(function(text) {
     console.log(text);
   })
 };
