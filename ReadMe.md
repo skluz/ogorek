@@ -15,8 +15,6 @@ problems:
 - long imports
 
 todo:
-- check stack trace in case rest method: pass, fail, error, next step
-- check rest method one by one
 - disabled steps in logs
 - line in logs
 - global actions/validations
@@ -27,9 +25,12 @@ todo:
 - universal steps (eg: click on element defined by 'css':'.table')
 - creating bean from page elements
 
+
++ check rest method one by one
 + check stack trace in case ie. expectElementIsEnabled: pass, fail, error, next step
 + check stack trace in case ie. expectElementEquals: pass, fail, error, next step
 + check stack trace in case ie. click: pass, fail, error, next step
++ check stack trace in case rest method: pass, fail, error, next step
 + using winston to handle/log exceptions
 + add Panel (to handle inside elements)
 = Q.reject - confirm that this is right usage

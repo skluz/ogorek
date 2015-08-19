@@ -21,30 +21,36 @@ function valueString(value) {
   return value.locator().toString();
 };
 
-/**
- * OK
- */
-function expectElementEquals(promise, expectedValue, message) {
+function expectPromiseValueEqual(promise, expectedValue, message) {
   return promise.then(function (value) {
-    logger.info('expectElementEquals [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expectedValue, value, message);
+    logger.info('expectPromiseValueEqual [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expectedValue, value, message);
     return expect(expectedValue).to.equal(value, message);
   }, function(err) {
-    logger.error('expectElementEquals - expected: [%s], message: [%s], error: [%s]', expectedValue, message, err.message);
+    logger.error('expectPromiseValueEqual - expected: [%s], message: [%s], error: [%s]', expectedValue, message, err.message);
     return Q.reject(err);
   });
 };
 
-function expectElementDeepEquals(promise, expected, message) {
+function expectPromiseValueDeepEqual(promise, expected, message) {
   return promise.then(function (value) {
     var s = 'unknown';
     if(Array.isArray(value)) {
       s = value.join(',')
     }
-    logger.info('expectElementDeepEquals [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expected, s, message);
+    logger.info('expectPromiseValueDeepEqual [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expected, s, message);
     return expect(value).to.deep.equal(expected, message);
   }, function(err) {
     logger.error('Error: ', err);
     return Q.reject(err);
+  });
+};
+
+function expectPromisesDeepEqual(promiseActual, promiseExpected, message) {
+  return promiseActual.then(function(actualValue) {
+    return promiseExpected.then(function(expectedValue) {
+      logger.info('expectPromisesDeepEqual - expectedValue: [%s], actualValue: [%s], message: [%s]', expectedValue, actualValue, message);
+      return expect(expectedValue).to.deep.equal(actualValue, message);
+    });
   });
 };
 
@@ -68,16 +74,16 @@ function expectElementTextMatch(element, regexp, message) {
   });
 };
 
-function expectArrayContains(array, key, message) {
+function expectPromiseArrayValueContains(array, key, message) {
   return array.then(function (values) {
-    logger.info('expectArrayContains - array: [%s], key: [%s], message: [%s]', values, key, message);
+    logger.info('expectPromiseArrayContains - array: [%s], key: [%s], message: [%s]', values, key, message);
     return expect(values).to.contains(key, message);
     }, function(err) {
       return Q.reject(err);
     });
 };
 
-function expectArrayLength(array, length, message) {
+function expectPromiseArrayValueLength(array, length, message) {
   return array.then(function (values) {
     logger.info('expectArrayLength - array: [%s], length: [%s], message: [%s]', values, length, message);
     return expect(values).to.have.length(length, message);
@@ -101,11 +107,12 @@ function expectElementIsEnabled(element, message) {
 }
 
 exports.static = function(scope) {
-  scope.expectElementEquals = expectElementEquals;
-  scope.expectElementDeepEquals = expectElementDeepEquals;
+  scope.expectPromiseValueEquals = expectPromiseValueEqual;
+  scope.expectPromiseValueDeepEqual = expectPromiseValueDeepEqual;
+  scope.expectPromisesDeepEqual = expectPromisesDeepEqual;
   scope.expectElementTextEquals = expectElementTextEquals;
   scope.expectElementTextMatch = expectElementTextMatch;
-  scope.expectArrayContains = expectArrayContains;
-  scope.expectArrayLength = expectArrayLength;
+  scope.expectPromiseArrayValueContains = expectPromiseArrayValueContains;
+  scope.expectPromiseArrayValueLength = expectPromiseArrayValueLength;
   scope.expectElementIsEnabled = expectElementIsEnabled;
 };

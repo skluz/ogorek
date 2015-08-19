@@ -4,10 +4,10 @@ Feature: Hello world 2!
   to watch youtube
 
   Scenario: Multiplication
-    Given I'm on the calculator page
-    When I multiply '2' by '3'
-    Then Result should be '6'
-    And I'm testing
+    Given Step 1
+    When Step 2
+    Then Step 3
+    And Step 4
 #    And Some rest step should work
 
 #  Scenario: Multiplication 2

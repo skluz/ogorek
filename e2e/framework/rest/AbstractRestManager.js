@@ -16,12 +16,12 @@ AbstractRestManager.prototype._get = function(path) {
     var deferred = protractor.promise.defer();
     logger.info('GET request - host: [%s], path: [%s]', client.url.href, path);
     client.get({path: path}, function(err, req, res, obj) {
-      logger.info('GET response - statusCode: [%s], length: [%s]', res.statusCode, res.headers['content-length']);
-      logger.info('GET response - body: ' + JSON.stringify(obj));
       if(err) {
         logger.error("GET error: [%s]", err.message);
         deferred.reject();
       } else {
+        logger.info('GET response - statusCode: [%s], length: [%s]', res.statusCode, res.headers['content-length']);
+        logger.info('GET response - body: ' + JSON.stringify(obj));
         deferred.fulfill(obj);
       }
     });

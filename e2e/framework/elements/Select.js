@@ -35,7 +35,7 @@ var Select = function Select (locator) {
   };
 
   this.select = function (option) {
-    return expectArrayContains(this.getOptions(), option).then(function() {
+    return expectPromiseArrayValueContains(this.getOptions(), option).then(function() {
       logger.info('selectOption - element: [%s], option: [%s]', _this.root.locator(), option);
       return _this.root.element(by.cssContainingText('option', option)).click();
     }, function (err) {

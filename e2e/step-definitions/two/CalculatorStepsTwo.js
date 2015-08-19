@@ -14,25 +14,25 @@ var expect = chai.expect;
 
 var CalculatorSteps = function() {
 
-  this.Given(/^I'm on the calculator page$/, function () {
+  this.Given(/^Step 1$/, function () {
     return calculatorPage.open();
   });
 
-  this.When(/^I multiply '(.*)' by '(.*)'$/, function (x, y) {
-    return calculatorPage.multiply(x, y);
+  this.When(/^Step 2$/, function () {
+    CalculatorRestManager.getAll();
+    CalculatorRestManager.getAll();
+    return calculatorPage.multiply(2, 3);
   });
 
-  this.Given(/^I'm testing$/, function() {
-    return CalculatorRestManager.getAll().then(function(r1) {
-      return expectElementEquals(r1.name);
-    })
+  this.Given(/^Step 3$/, function() {
+    return;
   });
 
-  this.Then(/^Result should be '(.*)'$/, function (result) {
+  this.Then(/^Step 4$/, function () {
     // assertions chain example:
 
     return Promise.resolve().then(function() {
-      return expectElementEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), result, "Checking multiplication result")
+      return expectPromiseValueEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), '6', "Checking multiplication result")
     });
 
     // or
