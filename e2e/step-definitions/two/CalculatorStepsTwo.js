@@ -3,7 +3,7 @@
 require('../../framework/utils/actions').static(global);
 require('../../framework/utils/validators').static(global);
 
-var calculatorRestManager = require('../../framework/rest').CalculatorRestManager;
+var CalculatorRestManager = require('../../framework/rest').CalculatorRestManager;
 var EntrySamplers = require('../../framework/rest').EntrySamplers;
 var calculatorPage = require('../../framework/pages').CalculatorPage;
 
@@ -23,26 +23,17 @@ var CalculatorSteps = function() {
   });
 
   this.Given(/^I'm testing$/, function() {
-    var entry = EntrySamplers.byName('one');
-    console.log('Entry:');
-    console.log(entry);
+    return CalculatorRestManager.getAll().then(function(r1) {
+      return expectElementEquals(r1.name);
+    })
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
-
     // assertions chain example:
 
     return Promise.resolve().then(function() {
-        return expectElementEquals(calculatorPage.resultTable.cellTextValue(0, 2), result)
-      }).then(function() {
-        return expectElementDeepEquals(calculatorPage.resultTable.headerTextValues(), ['Time', 'Expression', 'Result']);
-      }).then(function() {
-        return expectElementEquals(calculatorPage.resultTable.headerCellTextValue(0), 'Time')
-      }).then(function() {
-        return expectElementIsEnabled(calculatorPage.goButton);
-      }).then(function() {
-        return expectElementEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), result, "Checking result");
-      });
+      return expectElementEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), result, "Checking multiplication result")
+    });
 
     // or
 
@@ -57,7 +48,7 @@ var CalculatorSteps = function() {
   });
 
   this.Then(/^Some rest step should work$/, function() {
-    return calculatorRestManager.getAll().then(function(response) {
+    return CalculatorRestManager.getAll().then(function(response) {
       console.log(response.name);
     });
   });

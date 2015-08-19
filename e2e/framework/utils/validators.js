@@ -17,12 +17,19 @@ function valueClass(value) {
   }
 };
 
-function expectElementEquals(promise, expected, message) {
+function valueString(value) {
+  return value.locator().toString();
+};
+
+/**
+ * OK
+ */
+function expectElementEquals(promise, expectedValue, message) {
   return promise.then(function (value) {
-    logger.info('expectElementEquals [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expected, value, message);
-    return expect(value).to.equal(expected, message);
+    logger.info('expectElementEquals [class:%s] - expected: [%s], value: [%s], message: [%s]', valueClass(value), expectedValue, value, message);
+    return expect(expectedValue).to.equal(value, message);
   }, function(err) {
-    logger.error('Error: ', err);
+    logger.error('expectElementEquals - expected: [%s], message: [%s], error: [%s]', expectedValue, message, err.message);
     return Q.reject(err);
   });
 };
@@ -81,13 +88,16 @@ function expectArrayLength(array, length, message) {
 
 function expectElementEnabledStatus(element, expectedStatus, message) {
   return element.isEnabled().then(function(isEnabled) {
-    logger.info('expectElementEnabledStatus - element: [%s], expected: [%s], value: [%s], message: [%s]', element.locator().toString(), isEnabled, expectedStatus, message);
-    return expect(isEnabled).to.be.equal(expectedStatus, message);
+    logger.info('expectElementEnabledStatus - element: [%s], expected: [%s], value: [%s], message: [%s]', valueString(element), expectedStatus, isEnabled, message);
+    return expect(expectedStatus).to.be.equal(isEnabled, message);
+  }, function(err) {
+    logger.error("expectElementEnabledStatus - element: [%s], expected: [%s], message: [%s], error: [%s]", valueString(element), expectedStatus, message, err.message);
+    return Q.reject(err);
   });
 };
 
-function expectElementIsEnabled(element) {
-  return expectElementEnabledStatus(element, true);
+function expectElementIsEnabled(element, message) {
+  return expectElementEnabledStatus(element, true, message);
 }
 
 exports.static = function(scope) {

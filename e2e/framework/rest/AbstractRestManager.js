@@ -19,6 +19,7 @@ AbstractRestManager.prototype._get = function(path) {
       logger.info('GET response - statusCode: [%s], length: [%s]', res.statusCode, res.headers['content-length']);
       logger.info('GET response - body: ' + JSON.stringify(obj));
       if(err) {
+        logger.error("GET error: [%s]", err.message);
         deferred.reject();
       } else {
         deferred.fulfill(obj);

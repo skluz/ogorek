@@ -57,7 +57,7 @@ CalculatorPage.prototype.performCalculation = function (x, y, operator) {
   sendKeys(this.firstField, x);
   this.operatorSelect.select(operator);
   sendKeys(this.secondField, y);
-  return click(this.goButton);
+  return click(this.goButton, 'submiting calculation');
 };
 
 CalculatorPage.prototype.open = function() {
