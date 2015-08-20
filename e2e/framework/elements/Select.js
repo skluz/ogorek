@@ -1,10 +1,6 @@
 'use strict';
 
-require('../utils/validators').static(global);
-var logger = require('../utils/logger')(module);
-
 var Element = require('./Element');
-var Q = require('q');
 
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');

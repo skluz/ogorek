@@ -16,5 +16,12 @@ exports.config = {
     tags: '~@skip'
   },
   onPrepare: function() {
+    GLOBAL.logger = require('tracer').colorConsole({
+      format : "{{timestamp}} <{{title}}> [{{file}}:{{line}}] {{message}}",
+      dateformat : "HH:MM:ss.L"
+    });
+    GLOBAL.Q = require('q');
+    require('./e2e/framework/utils/validators').static(global);
+    require('./e2e/framework/utils/actions').static(global);
   }
 }

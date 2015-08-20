@@ -1,8 +1,5 @@
 'use strict';
 
-require('../../framework/utils/actions').static(global);
-require('../../framework/utils/validators').static(global);
-
 var calculatorRestManager = require('../../framework/rest').CalculatorRestManager;
 var calculatorPage = require('../../framework/pages').CalculatorPage;
 

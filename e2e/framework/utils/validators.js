@@ -1,9 +1,5 @@
 'use strict';
 
-var logger = require('./logger')(module);
-
-var Q = require('q');
-
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);

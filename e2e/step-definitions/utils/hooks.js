@@ -1,4 +1,4 @@
-var logger = require('../../framework/utils/logger')(module);
+'use strict';
 
 var Hooks = function() {
 
@@ -6,7 +6,7 @@ var Hooks = function() {
     var step = event.getPayloadItem('step');
     var parts = step.getUri().split(/[\\/]/);
     var fileName = parts[parts.length - 2] + '/' + parts.pop();
-    logger.info("[%s:%s] Step: %s", fileName, step.getLine(), step.getName());
+    logger.error("[%s:%s] Step: %s", fileName, step.getLine(), step.getName());
     callback();
   });
 

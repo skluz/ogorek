@@ -1,8 +1,5 @@
 'use strict';
 
-var logger = require('./logger')(module);
-var Q = require('q');
-
 function valueString(value) {
   return value.locator().toString();
 };

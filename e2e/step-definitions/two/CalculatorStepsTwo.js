@@ -1,8 +1,5 @@
 'use strict';
 
-require('../../framework/utils/actions').static(global);
-require('../../framework/utils/validators').static(global);
-
 var CalculatorRestManager = require('../../framework/rest').CalculatorRestManager;
 var EntrySamplers = require('../../framework/rest').EntrySamplers;
 var calculatorPage = require('../../framework/pages').CalculatorPage;
@@ -19,8 +16,8 @@ var CalculatorSteps = function() {
   });
 
   this.When(/^Step 2$/, function () {
-    CalculatorRestManager.getAll();
-    CalculatorRestManager.getAll();
+    //CalculatorRestManager.getAll();
+    //CalculatorRestManager.getAll();
     return calculatorPage.multiply(2, 3);
   });
 
@@ -29,11 +26,12 @@ var CalculatorSteps = function() {
   });
 
   this.Then(/^Step 4$/, function () {
+    return expectPromiseValueEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), '2', "Checking multiplication result");
     // assertions chain example:
 
-    return Promise.resolve().then(function() {
-      return expectPromiseValueEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), '6', "Checking multiplication result")
-    });
+    //return Promise.resolve().then(function() {
+    //  return expectPromiseValueEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), '2', "Checking multiplication result")
+    //});
 
     // or
 

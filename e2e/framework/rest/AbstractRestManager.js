@@ -1,7 +1,6 @@
 'use strict';
 
 var restify = require('restify');
-var logger = require('../utils/logger')(module);
 
 var AbstractRestManager = function() {
   this.client = restify.createJSONClient({

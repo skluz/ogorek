@@ -1,10 +1,5 @@
 'use strict';
 
-var Q = require('q');
-
-require('../utils/actions').static(global);
-require('../utils/validators').static(global);
-
 var Page = require('./Page');
 var Select = require('../elements').Select;
 var Table = require('../elements').Table;

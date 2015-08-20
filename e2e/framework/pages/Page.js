@@ -1,11 +1,7 @@
 'use strict';
 
-var logger = require('../utils/logger')(module);
-
 var chai = require('chai');
 var expect = chai.expect;
-
-var Q = require('q');
 
 var Page = function () {};
 

@@ -1,9 +1,5 @@
 'use strict';
 
-require('../utils/validators').static(global);
-var Q = require('q');
-
-
 var Element = require('./Element');
 
 var Table = function Table(locator, definition) {

@@ -15,7 +15,6 @@ problems:
 - long imports
 
 todo:
-- check if there is line/trace when assertion will fail
 - disabled steps in logs
 - line in logs
 - global actions/validations
@@ -27,6 +26,7 @@ todo:
 - creating bean from page elements
 - testing pages without cucumber
 
++ check if there is line/trace when assertion will fail
 + check rest method one by one
 + check stack trace in case ie. expectElementIsEnabled: pass, fail, error, next step
 + check stack trace in case ie. expectElementEquals: pass, fail, error, next step
