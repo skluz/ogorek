@@ -7,9 +7,9 @@ improvements:
 - rest manager inside protractor flow
 - logging framework (levels, file log, etc)
 - directory structure
+- class files starting from capital letter
 - container class
 - builder
-- class files starting from capital letter
 
 problems:
 - long imports
@@ -24,7 +24,7 @@ todo:
 - samplers for GUI as well
 - universal steps (eg: click on element defined by 'css':'.table')
 - creating bean from page elements
-
+- testing pages without cucumber
 
 + check rest method one by one
 + check stack trace in case ie. expectElementIsEnabled: pass, fail, error, next step
