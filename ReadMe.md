@@ -15,6 +15,7 @@ problems:
 - long imports
 
 todo:
+- check if there is line/trace when assertion will fail
 - disabled steps in logs
 - line in logs
 - global actions/validations
