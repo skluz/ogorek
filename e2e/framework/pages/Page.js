@@ -1,8 +1,5 @@
 'use strict';
 
-var chai = require('chai');
-var expect = chai.expect;
-
 var Page = function () {};
 
 Page.prototype.open = function(url) {

@@ -3,11 +3,6 @@
 var calculatorRestManager = require('../../framework/rest').CalculatorRestManager;
 var calculatorPage = require('../../framework/pages').CalculatorPage;
 
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
-var expect = chai.expect;
-
 var CalculatorSteps = function() {
 
   this.Given(/^I'm on the calculator page$/, function () {

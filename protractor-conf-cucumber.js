@@ -21,7 +21,12 @@ exports.config = {
       dateformat : "HH:MM:ss.L"
     });
     GLOBAL.Q = require('q');
+
     require('./e2e/framework/utils/validators').static(global);
     require('./e2e/framework/utils/actions').static(global);
+
+    var chai = require('chai');
+    chai.use(require('chai-as-promised'));
+    GLOBAL.expect = chai.expect;
   }
 }

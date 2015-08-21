@@ -1,13 +1,13 @@
 'use strict';
 
-var Container = function Container(locator, locators) {
+var Container = function Container(rootElement, locators) {
 
-  this.element = element(locator);
+  this.rootElement = rootElement;
 
   for (var property in locators) {
     if (locators.hasOwnProperty(property)) {
       Object.defineProperty(this, property, {
-        value: this.element.element(locators[property])
+        value: this.rootElement.element(locators[property])
       })
     }
   }

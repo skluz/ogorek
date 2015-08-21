@@ -3,7 +3,6 @@
 var Page = require('./Page');
 var Select = require('../elements').Select;
 var Table = require('../elements').Table;
-
 var Container = require('../elements').Container;
 
 var CalculatorPage = function () {
@@ -20,11 +19,11 @@ var CalculatorPage = function () {
     ]
   });
 
-  this.head = new Container(by.css('.table thead'), {
+  this.head = new Container($('.table thead'), {
     header: by.tagName('tr')
   });
 
-  this.body = new Container(by.css('.table tbody'), {
+  this.body = new Container($('.table tbody'), {
     header: by.tagName('tr')
   });
 

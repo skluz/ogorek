@@ -5,8 +5,10 @@ module.exports = function(grunt) {
         protractor: {
             options: {
                 keepAlive: true,
-                noColor: false,
-                args: {}
+                noColor: true,
+                args: {
+
+                }
             },
             cucumber: {
                 configFile: "protractor-conf-cucumber.js"

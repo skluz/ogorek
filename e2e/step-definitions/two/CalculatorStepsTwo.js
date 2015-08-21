@@ -4,11 +4,6 @@ var CalculatorRestManager = require('../../framework/rest').CalculatorRestManage
 var EntrySamplers = require('../../framework/rest').EntrySamplers;
 var calculatorPage = require('../../framework/pages').CalculatorPage;
 
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-chai.use(chaiAsPromised);
-var expect = chai.expect;
-
 var CalculatorSteps = function() {
 
   this.Given(/^Step 1$/, function () {
