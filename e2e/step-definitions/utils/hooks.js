@@ -6,7 +6,7 @@ var Hooks = function() {
     var step = event.getPayloadItem('step');
     var parts = step.getUri().split(/[\\/]/);
     var fileName = parts[parts.length - 2] + '/' + parts.pop();
-    logger.error("[%s:%s] Step: %s", fileName, step.getLine(), step.getName());
+    logger.step("[%s:%s] %s", fileName, step.getLine(), step.getName());
     callback();
   });
 
@@ -14,7 +14,7 @@ var Hooks = function() {
     var scenario = event.getPayloadItem('scenario');
     var parts = scenario.getUri().split(/[\\/]/);
     var fileName = parts[parts.length - 2] + '/' + parts.pop();
-    logger.info("[%s:%s] Scenario: %s, tags: [%s]", fileName, scenario.getLine(), scenario.getName(), _tags(scenario));
+    logger.scenario("[%s:%s] %s, tags: [%s]", fileName, scenario.getLine(), scenario.getName(), _tagsToString(scenario));
     callback();
   });
 
@@ -22,16 +22,16 @@ var Hooks = function() {
     var feature = event.getPayloadItem('feature');
     var parts = feature.getUri().split(/[\\/]/);
     var fileName = parts[parts.length - 2] + '/' + parts.pop();
-    logger.info("[%s:%s] Feature: %s, tags: [%s]", fileName, feature.getLine(), feature.getName(), _tags(feature));
+    logger.feature("[%s:%s] %s, tags: [%s]", fileName, feature.getLine(), feature.getName(), _tagsToString(feature));
     callback();
   });
 
-  var _tags = function(element) {
+  var _tagsToString = function(element) {
     var result = new Array();
     element.getTags().forEach(function(tag) {
       result.push(tag.getName());
     });
-    return result;
+    return result.join(', ');
   };
 
 };

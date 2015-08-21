@@ -1,21 +1,21 @@
 'use strict';
 
-var calculatorRestManager = require('../../framework/rest').CalculatorRestManager;
-var calculatorPage = require('../../framework/pages').CalculatorPage;
+var CalculatorRestManager = require('framework/rest').CalculatorRestManager;
+var CalculatorPage = require('framework/pages').CalculatorPage;
 
 var CalculatorSteps = function() {
 
   this.Given(/^I'm on the calculator page$/, function () {
-    return calculatorPage.open();
+    return CalculatorPage.open();
   });
 
   this.When(/^I multiply '(.*)' by '(.*)'$/, function (x, y) {
-    calculatorPage.add(x, y);
-    return calculatorPage.multiply(x, y);
+    CalculatorPage.add(x, y);
+    return CalculatorPage.multiply(x, y);
   });
 
   this.Given(/^I'm testing$/, function() {
-    return expectElementDeepEquals(calculatorPage.resultTable.columnValues(1), ['a'], 'checking result table!');
+    return expectElementDeepEquals(CalculatorPage.resultTable.columnValues(1), ['a'], 'checking result table!');
   });
 
   this.Then(/^Result should be '(.*)'$/, function (result) {
@@ -23,13 +23,13 @@ var CalculatorSteps = function() {
     // assertions chain example:
 
     return Promise.resolve().then(function() {
-        return expectElementEquals(calculatorPage.tablePanel.resultTable.cellValue(0, 2), result)
+        return expectElementEquals(CalculatorPage.tablePanel.resultTable.cellValue(0, 2), result)
       }).then(function() {
-        return expectElementDeepEquals(calculatorPage.tablePanel.resultTable.headerValues(), ['Time', 'Expression', 'Result']);
+        return expectElementDeepEquals(CalculatorPage.tablePanel.resultTable.headerValues(), ['Time', 'Expression', 'Result']);
       }).then(function() {
-        return expectElementEquals(calculatorPage.tablePanel.resultTable.headerCell(0), 'Time')
+        return expectElementEquals(CalculatorPage.tablePanel.resultTable.headerCell(0), 'Time')
       }).then(function() {
-        return expectElementIsEnabled(calculatorPage.goButton);
+        return expectElementIsEnabled(CalculatorPage.goButton);
       });
 
     // or
@@ -45,7 +45,7 @@ var CalculatorSteps = function() {
   });
 
   this.Then(/^Some rest step should work$/, function() {
-    return calculatorRestManager.getAll().then(function(response) {
+    return CalculatorRestManager.getAll().then(function(response) {
       console.log(response.name);
     });
   });

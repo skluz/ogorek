@@ -1,6 +1,6 @@
 'use strict';
 
-var Element = require('./Element');
+var Element = require('framework/elements').Element;
 
 var Table = function Table(locator, definition) {
 

@@ -65,8 +65,8 @@ function expectElementTextMatch(element, regexp, message) {
   });
 };
 
-function expectPromiseArrayValueContains(array, key, message) {
-  return array.then(function (values) {
+function expectPromiseArrayValueContains(promiseArray, key, message) {
+  return promiseArray.then(function (values) {
     logger.info('expectPromiseArrayContains - array: [%s], key: [%s], message: [%s]', values, key, message);
     return expect(values).to.contains(key, message);
     }, function(err) {
@@ -74,8 +74,8 @@ function expectPromiseArrayValueContains(array, key, message) {
     });
 };
 
-function expectPromiseArrayValueLength(array, length, message) {
-  return array.then(function (values) {
+function expectPromiseArrayValueLength(promiseArray, length, message) {
+  return promiseArray.then(function (values) {
     logger.info('expectArrayLength - array: [%s], length: [%s], message: [%s]', values, length, message);
     return expect(values).to.have.length(length, message);
   }, function(err) {

@@ -5,19 +5,14 @@ improvements:
 - debug possible: browser.pause()
 - debug from intellij
 - rest manager inside protractor flow
-- logging framework (levels, file log, resolving placeholders, etc)
+- logging framework (levels, file log, resolving placeholders, etc., custom levels for steps, scenarios)
 - steps logging
-- directory structure
+- directory structure + imports
 - container class
 - builder
 
-problems:
-- long imports
 
 todo:
-- disabled steps in logs
-- assertions inside flow ??
-- better import strategy (requirejs?)
 - samplers for GUI as well
 - universal steps (eg: click on element defined by 'css':'.table')
 - creating bean from page elements
@@ -25,6 +20,7 @@ todo:
 - colors
 - consider names of validation methods
 
++ better import strategy
 + self created class
 + global actions/validations
 + line in logs

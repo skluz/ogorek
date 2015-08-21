@@ -8,7 +8,7 @@ Feature: Hello world 2!
   Scenario: Multiplication
     Given Step 1
     When Step 2
-#    Then Step 3
+    Then Step 3
 #    And Step 4
 #    And Some rest step should work
 

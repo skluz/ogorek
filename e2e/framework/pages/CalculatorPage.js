@@ -1,9 +1,9 @@
 'use strict';
 
-var Page = require('./Page');
-var Select = require('../elements').Select;
-var Table = require('../elements').Table;
-var Container = require('../elements').Container;
+var Page = require('framework/pages').Page;
+var Select = require('framework/elements').Select;
+var Table = require('framework/elements').Table;
+var Container = require('framework/elements').Container;
 
 var CalculatorPage = function () {
 

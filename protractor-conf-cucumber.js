@@ -16,14 +16,25 @@ exports.config = {
     tags: '~@skip'
   },
   onPrepare: function() {
+
+    require('app-module-path').addPath('./e2e');
+    require('framework/utils/validators').static(global);
+    require('framework/utils/actions').static(global);
+
     GLOBAL.logger = require('tracer').console({
-      format : "{{timestamp}} <{{title}}> [{{file}}:{{line}}] {{message}}",
+      level : 'info',
+      methods : ['debug', 'info', 'warn', 'error', 'feature', 'scenario', 'step'],
+      format : [
+        "{{timestamp}} <{{title}}> [{{file}}:{{line}}] {{message}}",
+        {
+          feature: "{{timestamp}} <{{title}}> {{message}}",
+          scenario: "{{timestamp}} <{{title}}> {{message}}",
+          step: "{{timestamp}} <{{title}}> {{message}}"
+        }],
       dateformat : "HH:MM:ss.l"
     });
-    GLOBAL.Q = require('q');
 
-    require('./e2e/framework/utils/validators').static(global);
-    require('./e2e/framework/utils/actions').static(global);
+    GLOBAL.Q = require('q');
 
     var chai = require('chai');
     chai.use(require('chai-as-promised'));
