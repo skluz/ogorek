@@ -1,13 +1,15 @@
+@dupa
 Feature: Hello world 2!
   As a developer I want to have nice testing framework
   so I could write tests fast and have lots of time
   to watch youtube
 
+  @dupa2
   Scenario: Multiplication
     Given Step 1
     When Step 2
-    Then Step 3
-    And Step 4
+#    Then Step 3
+#    And Step 4
 #    And Some rest step should work
 
 #  Scenario: Multiplication 2

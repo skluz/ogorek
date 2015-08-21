@@ -4,8 +4,8 @@ Feature: Two
   @skip
   Scenario: Scenario from feature two
     Given I'm on the calculator page
-    When I multiply '2' by '3'
-    And I'm testing
+#    When I multiply '2' by '3'
+#    And I'm testing
 #    Then Result should be '6'
 #    And Some rest step should work
 

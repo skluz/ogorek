@@ -16,9 +16,9 @@ exports.config = {
     tags: '~@skip'
   },
   onPrepare: function() {
-    GLOBAL.logger = require('tracer').colorConsole({
+    GLOBAL.logger = require('tracer').console({
       format : "{{timestamp}} <{{title}}> [{{file}}:{{line}}] {{message}}",
-      dateformat : "HH:MM:ss.L"
+      dateformat : "HH:MM:ss.l"
     });
     GLOBAL.Q = require('q');
 
