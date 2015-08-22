@@ -1,6 +1,7 @@
 improvements:
-- no more callbacks - current version uses promises only (except hooks)
-- no 'actions' layer - complicated logic moved to specific pages classes - actions can be still use in case complicated logic which involve many pages at once
+- no more callbacks - promises only (except hooks)
+- no 'actions' layer - complicated logic moved to specific pages classes - actions can be still use in case operations which involve many pages at once
+
 - common actions & validations methods (with logging)
 - debug possible: browser.pause()
 - debug from intellij
@@ -10,16 +11,20 @@ improvements:
 - directory structure + imports
 - container class
 - builder
+- easy modules import
 
 
 todo:
-- samplers for GUI as well
-- universal steps (eg: click on element defined by 'css':'.table')
 - creating bean from page elements
+- samplers for GUI
 - testing pages without cucumber
-- colors
 - consider names of validation methods
+- what if return button.click() will fail ?
+- check all utils methods + add new once
+- better validation for select.select();
 
++ _this -> bind
++ page validate element
 + better import strategy
 + self created class
 + global actions/validations

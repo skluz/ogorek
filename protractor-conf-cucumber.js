@@ -13,13 +13,13 @@ exports.config = {
   baseUrl: 'http://juliemr.github.io/',
   cucumberOpts: {
     require: 'e2e/step-definitions/**',
-    tags: '~@skip'
+    tags: '~@skip-me'
   },
   onPrepare: function() {
 
-    require('app-module-path').addPath('./e2e');
-    require('framework/utils/validators').static(global);
-    require('framework/utils/actions').static(global);
+    require('app-module-path').addPath('./e2e/framework');
+    require('utils/validators').static(global);
+    require('utils/actions').static(global);
 
     GLOBAL.logger = require('tracer').console({
       level : 'info',
@@ -34,10 +34,10 @@ exports.config = {
       dateformat : "HH:MM:ss.l"
     });
 
-    GLOBAL.Q = require('q');
-
     var chai = require('chai');
     chai.use(require('chai-as-promised'));
     GLOBAL.expect = chai.expect;
+
+    GLOBAL.Q = require('q');
   }
 }

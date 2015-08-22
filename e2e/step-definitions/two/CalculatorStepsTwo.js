@@ -1,52 +1,6 @@
 'use strict';
 
-var CalculatorRestManager = require('framework/rest').CalculatorRestManager;
-var EntrySamplers = require('framework/rest').EntrySamplers;
-var CalculatorPage = require('framework/pages').CalculatorPage;
+module.exports = function() {
 
-var CalculatorSteps = function() {
-
-  this.Given(/^Step 1$/, function () {
-    return CalculatorPage.open();
-  });
-
-  this.When(/^Step 2$/, function () {
-    //CalculatorRestManager.getAll();
-    //CalculatorRestManager.getAll();
-    return CalculatorPage.multiply(2, 3);
-  });
-
-  this.Given(/^Step 3$/, function() {
-    logger.info("Hello!");
-    return;
-  });
-
-  this.Then(/^Step 4$/, function () {
-    return expectPromiseValueEquals(CalculatorPage.resultTable.cellElement(0, 2).getText(), '2', "Checking multiplication result");
-    // assertions chain example:
-
-    //return Promise.resolve().then(function() {
-    //  return expectPromiseValueEquals(calculatorPage.resultTable.cellElement(0, 2).getText(), '2', "Checking multiplication result")
-    //});
-
-    // or
-
-    //return expectElementEquals(calculatorPage.resultTable.cellValue(0, 2), result).then(function() {
-    //  return expectElementDeepEquals(calculatorPage.resultTable.headerValues(), ['Time', 'Expression', 'Result']).then(function() {
-    //    return expectElementEquals(calculatorPage.resultTable.headerCell(0), 'Time').then(function() {
-    //      return expectArrayLength(calculatorPage.resultTable.headerValues(), 4);
-    //    })
-    //  })
-    //})
-
-  });
-
-  this.Then(/^Some rest step should work$/, function() {
-    return CalculatorRestManager.getAll().then(function(response) {
-      console.log(response.name);
-    });
-  });
 
 };
-
-module.exports = CalculatorSteps;

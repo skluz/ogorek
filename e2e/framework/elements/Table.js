@@ -1,6 +1,6 @@
 'use strict';
 
-var Element = require('framework/elements').Element;
+var Element = require('elements').Element;
 
 var Table = function Table(locator, definition) {
 
@@ -20,12 +20,6 @@ var Table = function Table(locator, definition) {
     })
   };
 
-  /**
-   * Array of strings containing values from chosen row
-   * @param row number of row
-   * @returns {*|webdriver.promise.Promise} A promise that will be resolved
-   * with table row visible text.
-   */
   this.rowTextValues = function(row) {
     return this._arrayTextValues().then(function(a) {
       return a[row];

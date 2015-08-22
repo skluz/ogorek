@@ -1,6 +1,6 @@
 'use strict';
 
-var Hooks = function() {
+module.exports = function() {
 
   this.BeforeStep(function(event, callback) {
     var step = event.getPayloadItem('step');
@@ -35,5 +35,3 @@ var Hooks = function() {
   };
 
 };
-
-module.exports = Hooks;

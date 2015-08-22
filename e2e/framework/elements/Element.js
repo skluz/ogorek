@@ -1,11 +1,11 @@
 'use strict';
 
-var Element = function Element(locator) {
-  this.element = element(locator);
+var Element = function Element(rootElement) {
+  this.rootElement = rootElement;
 };
 
 Element.prototype.toString = function() {
-  return '[class: ' + this.constructor.name + ', locator: ' + this.element.locator() + ']';
+  return '[class: ' + this.constructor.name + ', locator: ' + this.rootElement.locator() + ']';
 };
 
 module.exports = Element;

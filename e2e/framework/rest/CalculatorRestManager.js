@@ -1,6 +1,6 @@
 'use strict';
 
-var AbstractRestManager = require('framework/rest').AbstractRestManager;
+var AbstractRestManager = require('rest').AbstractRestManager;
 
 var CalculatorRestManager = function() {};
 

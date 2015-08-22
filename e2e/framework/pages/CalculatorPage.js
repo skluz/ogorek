@@ -1,14 +1,19 @@
 'use strict';
 
-var Page = require('framework/pages').Page;
-var Select = require('framework/elements').Select;
-var Table = require('framework/elements').Table;
-var Container = require('framework/elements').Container;
+var Page = require('pages').Page;
+var Select = require('elements').Select;
+var Table = require('elements').Table;
+var Container = require('elements').Container;
 
 var CalculatorPage = function () {
 
+  Page.apply(this, arguments);
+
+  this.validityIndicator = element(by.model('first'));
+
   this.firstField = element(by.model('first'));
   this.secondField = element(by.model('second'));
+  this.operatorSelect = new Select(element(by.model('operator')));
   this.goButton = $('#gobutton');
 
   this.resultTable = new Table(by.css('.table'), {
@@ -19,39 +24,21 @@ var CalculatorPage = function () {
     ]
   });
 
-  this.head = new Container($('.table thead'), {
-    header: by.tagName('tr')
-  });
-
-  this.body = new Container($('.table tbody'), {
-    header: by.tagName('tr')
-  });
-
-  this.operatorSelect = new Select(by.model('operator'));
-
 };
 
 CalculatorPage.prototype = new Page();
-
-CalculatorPage.prototype.test = function() {
-  return this.head.header.getText().then(function(text) {
-    console.log(text);
-  })
-};
+CalculatorPage.prototype.constructor = CalculatorPage;
 
 CalculatorPage.prototype.multiply = function(x, y) {
   return this.performCalculation(x, y, '*');
 };
 
-CalculatorPage.prototype.add = function(x, y) {
-  return this.performCalculation(x, y, '+');
-};
-
 CalculatorPage.prototype.performCalculation = function (x, y, operator) {
-  sendKeys(this.firstField, x);
+  logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator);
+  sendKeys(this.firstField, x, 'filling first field');
   this.operatorSelect.select(operator);
-  sendKeys(this.secondField, y);
-  return click(this.goButton, 'submiting calculation');
+  sendKeys(this.secondField, y, 'filling second field');
+  return click(this.goButton, 'submitting calculation');
 };
 
 CalculatorPage.prototype.open = function() {
