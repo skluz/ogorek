@@ -19,10 +19,11 @@ todo:
 - samplers for GUI
 - testing pages without cucumber
 - consider names of validation methods
-- what if return button.click() will fail ?
 - check all utils methods + add new once
 - better validation for select.select();
+- bean compare without all fields
 
++ what if return button.click() will fail ?
 + _this -> bind
 + page validate element
 + better import strategy

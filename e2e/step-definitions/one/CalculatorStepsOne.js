@@ -13,7 +13,7 @@ module.exports = function() {
   });
 
   this.Then('result should be $result', function (result) {
-    return expectPromiseValueEqual(CalculatorPage.resultTable.cellElement(0, 2).getText(), result, 'multiplication result');
+    return expectPromiseValueEqual(CalculatorPage.operatorSelect.getSelectedOption(), '-', 'Multiplication sign');
   });
 
 };

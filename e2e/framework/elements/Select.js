@@ -17,22 +17,12 @@ Select.prototype.getOptions = function () {
 };
 
 Select.prototype.getSelectedOption = function () {
-  return this.rootElement.element(by.css('option[selected="selected"]'));
-  /*
-   var selectedOptionLocator = by.css('option[selected="selected"]');
-   return _this.rootElement.all(selectedOptionLocator).count().then(function (count) {
-   if(count == 1)
-   return _this.rootElement.all(selectedOptionLocator).first().getText().then(function(text) {
-   logger.info('getSelectedOption - element: [%s], selected option: [%s]', _this.rootElement.locator(), text);
-   })
-   else
-   return Q.reject(new Error('There should be just one element selected'));
-   */
+  return this.rootElement.$('option:checked').getText();
 };
 
 Select.prototype.select = function (option) {
-  return click(this.rootElement, 'select visible field').then(function() {
-    return click(this.rootElement.element(by.cssContainingText('option', option)), 'select specific option');
+  return click(this.rootElement, 'opening select list').then(function() {
+    return click(this.rootElement.element(by.cssContainingText('option', option)), 'selecting specified option');
   }.bind(this));
 };
 

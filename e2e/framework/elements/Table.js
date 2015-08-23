@@ -1,10 +1,7 @@
 'use strict';
 
-var Element = require('elements').Element;
-
 var Table = function Table(locator, definition) {
 
-  var _this = this;
   this.root = element(locator);
   this.definition = definition;
 
@@ -57,13 +54,13 @@ var Table = function Table(locator, definition) {
   this.beans = function() {
     return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
       var result = new Object;
-      for(var i = 0; i < _this.definition.columns.length; i++) {
+      for(var i = 0; i < this.definition.columns.length; i++) {
         var td = tr.all(by.tagName('td')).get(i);
-        var value = _this._beanValue(_this.definition.columns[i].type, td);
-        result[_this.definition.columns[i].name] = value;
+        var value = this._beanValue(this.definition.columns[i].type, td);
+        result[this.definition.columns[i].name] = value;
       }
       return result;
-    });
+    }.bind(this));
   };
 
   this._beanValue = function(type, td) {
@@ -85,8 +82,5 @@ var Table = function Table(locator, definition) {
   };
 
 };
-
-Table.prototype = new Element();
-Table.prototype.constructor = Table;
 
 module.exports = Table;

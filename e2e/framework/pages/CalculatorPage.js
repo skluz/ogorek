@@ -14,7 +14,7 @@ var CalculatorPage = function () {
   this.firstField = element(by.model('first'));
   this.secondField = element(by.model('second'));
   this.operatorSelect = new Select(element(by.model('operator')));
-  this.goButton = $('#gobutton');
+  this.goButton = $('#gobuttXon');
 
   this.resultTable = new Table(by.css('.table'), {
     columns: [
