@@ -52,12 +52,13 @@ var Table = function Table(rootElement, definition) {
   };
 
   this.beans = function() {
-    return this.rootElement.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
-      var result = new Object;
+    return this.rootElement.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr, index) {
+      var result = {data : {}};
       for(var i = 0; i < this.definition.columns.length; i++) {
         var td = tr.all(by.tagName('td')).get(i);
         var value = this._beanValue(this.definition.columns[i].type, td);
-        result[this.definition.columns[i].name] = value;
+        result.data[this.definition.columns[i].name] = value;
+        result.index = index;
       }
       return result;
     }.bind(this));

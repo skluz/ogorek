@@ -13,8 +13,9 @@ module.exports = function() {
   });
 
   this.Then('result should be $result', function (result) {
-    logger.info(CalculatorPage.x());
-    return 'OK';
+    return CalculatorPage.resultTable.rowBean(0).then(function(bean) {
+      logger.info(bean);
+    })
   });
 
 };
