@@ -18,6 +18,12 @@ module.exports = function() {
     callback();
   });
 
+  this.After(function (scenario, callback) {
+    scenario.attach(logger.buffer.join('\n'));
+    logger.buffer.length = 0;
+    callback();
+  });
+
   this.BeforeFeature(function (event, callback) {
     var feature = event.getPayloadItem('feature');
     var parts = feature.getUri().split(/[\\/]/);

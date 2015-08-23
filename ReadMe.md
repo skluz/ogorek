@@ -7,22 +7,20 @@ improvements:
 - debug from intellij
 - rest manager inside protractor flow
 - logging framework (levels, file log, resolving placeholders, etc., custom levels for steps, scenarios)
-- steps logging
-- directory structure + imports
+- directory structure + easy modules import
 - container class
+- table class
 - builder
-- easy modules import
 
 
 todo:
 - creating bean from page elements
 - samplers for GUI
-- testing pages without cucumber
-- consider names of validation methods
-- check all utils methods + add new once
-- better validation for select.select();
 - bean compare without all fields
+- screenshots
 
++ logs inside report
++ consider names of validation methods
 + what if return button.click() will fail ?
 + _this -> bind
 + page validate element

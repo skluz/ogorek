@@ -21,8 +21,13 @@ Select.prototype.getSelectedOption = function () {
 };
 
 Select.prototype.select = function (option) {
-  return click(this.rootElement, 'opening select list').then(function() {
-    return click(this.rootElement.element(by.cssContainingText('option', option)), 'selecting specified option');
+  return Promise.resolve()
+    .then(function() { logger.info('selecting - option: [%s], list: [%s]', option, this.toString());}.bind(this))
+    .then(function() { return click(this.rootElement, 'opening select list');}.bind(this))
+    .then(function() { return click(this.rootElement.element(by.cssContainingText('option', option)), 'selecting specified option');}.bind(this))
+    .catch(function(err) {
+      logger.error('selecting failed - option: [%s], list: [%s], error: [%s]', option, this.toString(), err.message);
+      return Q.reject(err);
   }.bind(this));
 };
 

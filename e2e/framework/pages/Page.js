@@ -5,9 +5,11 @@ var Page = function () {
 };
 
 Page.prototype.open = function(url) {
-  logger.info('Opening page: %s', url);
+  logger.info('Opening page - baseUrl: [%s], destination: [%s]', browser.baseUrl, url);
   return browser.get(url).then(function() {
-    logger.info('Page opened: %s', url);
+    return browser.getCurrentUrl().then(function(currentUrl) {
+      logger.info('Page opened - current url: [%s]', currentUrl);
+    });
   }, function(err) {
     logger.error('Cannot open page: %s, error: [%s]', url, err.message);
     return Q.reject(err);

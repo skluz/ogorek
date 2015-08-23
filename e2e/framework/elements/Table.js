@@ -1,12 +1,12 @@
 'use strict';
 
-var Table = function Table(locator, definition) {
+var Table = function Table(rootElement, definition) {
 
-  this.root = element(locator);
+  this.rootElement = rootElement;
   this.definition = definition;
 
   this.headerTextValues = function() {
-    return this.root.element(by.tagName('thead')).all(by.tagName('th')).map(function(th) {
+    return this.rootElement.element(by.tagName('thead')).all(by.tagName('th')).map(function(th) {
       return th.getText();
     });
   };
@@ -14,7 +14,7 @@ var Table = function Table(locator, definition) {
   this.headerCellTextValue = function(column) {
     return this.headerTextValues().then(function(a) {
       return a[column];
-    })
+    });
   };
 
   this.rowTextValues = function(row) {
@@ -39,7 +39,7 @@ var Table = function Table(locator, definition) {
   };
 
   this._arrayTextValues = function() {
-    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
+    return this.rootElement.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
       var cells = tr.all(by.tagName('td')).map(function(td) {
         return td.getText();
       })
@@ -52,7 +52,7 @@ var Table = function Table(locator, definition) {
   };
 
   this.beans = function() {
-    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
+    return this.rootElement.element(by.tagName('tbody')).all(by.tagName('tr')).map(function(tr) {
       var result = new Object;
       for(var i = 0; i < this.definition.columns.length; i++) {
         var td = tr.all(by.tagName('td')).get(i);

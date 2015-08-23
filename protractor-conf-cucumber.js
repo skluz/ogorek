@@ -22,6 +22,13 @@ exports.config = {
     require('utils/actions').static(global);
 
     GLOBAL.logger = require('tracer').console({
+      transport : function(data) {
+        console.log(data.output)
+        if(!logger.buffer) {
+          logger.buffer = new Array();
+        }
+        logger.buffer.push(data.output);
+      },
       level : 'info',
       methods : ['debug', 'info', 'warn', 'error', 'feature', 'scenario', 'step'],
       format : [
