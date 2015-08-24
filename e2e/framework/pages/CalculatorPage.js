@@ -3,7 +3,6 @@
 var Page = require('pages').Page;
 var Select = require('elements').Select;
 var Table = require('elements').Table;
-var Container = require('elements').Container;
 
 var CalculatorPage = function () {
 

@@ -13,7 +13,8 @@ exports.config = {
   baseUrl: 'http://juliemr.github.io/',
   cucumberOpts: {
     require: 'e2e/step-definitions/**',
-    tags: '~@skip-me'
+    tags: '~@skip-me',
+    format: 'pretty'
   },
   onPrepare: function() {
 
