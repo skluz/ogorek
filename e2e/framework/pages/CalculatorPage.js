@@ -45,17 +45,24 @@ CalculatorPage.prototype.performCalculation = function (x, y, operator) {
     })
 };
 
-CalculatorPage.prototype.x = function() {
-  var result = {};
+CalculatorPage.prototype.values = function() {
+  return Q.all([this.goButton.getText(), this.operatorSelect.getSelectedOption()])
+    .then(function(a){
+      return {
+        buttonText : a[0],
+        selectedOption : a[1]
+      }
+    });
+
+/*
   return Promise.resolve()
-    .then(function() {
-      return this.goButton.getText().then(function(text) {
-        result.buttonText = text;
-      })
-    }.bind(this))
-    .then(function() {
-      return result;
+    .then(this.goButton.getText.bind(this.goButton))
+    .then(function(text) {
+      result.buttonText = text;
     })
+    .then(this.firstField.getText.bind(this.firstField))
+    .then()
+*/
 };
 
 CalculatorPage.prototype.open = function() {
