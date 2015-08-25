@@ -12,7 +12,7 @@ var CalculatorPage = function () {
 
   this.firstField = element(by.model('first'));
   this.secondField = element(by.model('second'));
-  this.operatorSelect = new Select(element(by.model('opeXrator')));
+  this.operatorSelect = new Select(element(by.model('operator')));
   this.goButton = $('#gobutton');
 
   this.resultTable = new Table($('.table'), {
@@ -29,33 +29,42 @@ CalculatorPage.prototype = new Page();
 CalculatorPage.prototype.constructor = CalculatorPage;
 
 CalculatorPage.prototype.multiply = function(x, y) {
-  return this.performCalculation(x, y, '*');
+  return this.performCalculationPromise(x, y, '*');
 };
 
-CalculatorPage.prototype.performCalculation = function (x, y, operator) {
+CalculatorPage.prototype.performCalculationFlow = function (x, y, operator) {
+  logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator);
+  sendKeys(this.firstField, x, 'filling first field');
+  this.operatorSelect.select(operator);
+  sendKeys(this.secondField, y, 'filling second field');
+  return click(this.goButton, 'submitting calculation');
+  logger.error("Error when performing calculation: [%s]", err.message);
+};
+
+CalculatorPage.prototype.performCalculationQAll = function (x, y, operator) {
+  return [
+    function() {logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator)},
+    function() {sendKeys(this.firstField, x, 'filling first field')}.bind(this),
+    function() {this.operatorSelect.select(operator)}.bind(this),
+    function() {sendKeys(this.secondField, y, 'filling second field')}.bind(this),
+    function() {click(this.goButton, 'submitting calculation')}.bind(this)
+  ].reduce(Q.when, Q());
+};
+
+CalculatorPage.prototype.performCalculationPromise = function (x, y, operator) {
   return Promise.resolve()
-    .then(function() {
-      logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator);
-    })
-    .then(function() {
-      return sendKeys(this.firstField, x, 'filling first field');
-    }.bind(this))
-    .then(function() {
-      return this.operatorSelect.select(operator);
-    }.bind(this))
-    .then(function() {
-      return sendKeys(this.secondField, y, 'filling second field');
-    }.bind(this))
-    .then(function() {
-      return click(this.goButton, 'submitting calculation');
-    }.bind(this))
+    .then(function() { logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator);})
+    .then(function() { return sendKeys(this.firstField, x, 'filling first field');}.bind(this))
+    .then(function() { return this.operatorSelect.select(operator);}.bind(this))
+    .then(function() { return sendKeys(this.secondField, y, 'filling second field');}.bind(this))
+    .then(function() { return click(this.goButton, 'submitting calculation');}.bind(this))
     .catch(function(err) {
       logger.error("Error when performing calculation: [%s]", err.message);
-      return Q.reject(err.message);
+      return Promise.reject(err);
     })
 };
 
-CalculatorPage.prototype.values = function() {
+CalculatorPage.prototype.model = function() {
   return Q.all([this.goButton.getText(), this.operatorSelect.getSelectedOption()])
     .then(function(a){
       return {

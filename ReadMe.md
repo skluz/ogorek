@@ -1,6 +1,10 @@
 improvements:
-- no more callbacks - promises only (except hooks)
-- no 'actions' layer - complicated logic moved to specific pages classes - actions can be still use in case operations which involve many pages at once
+- no more callbacks, promises only (except hooks) [callbacks tree]
+- no 'actions' layer - complicated logic moved to specific pages -
+actions can be still useful in case operations which involve many pages/rest interfaces
+[90% actions was single operations, copy & paste, long file]
+
+
 
 - common actions & validations methods (with logging)
 - debug possible: browser.pause()
@@ -11,14 +15,15 @@ improvements:
 - container class
 - table class
 - builder
+- string instead of regexps
 
 
 todo:
-- creating bean from page elements
 - samplers for GUI
-- bean compare without all fields
 - screenshots
 
++ bean compare without all fields
++ creating bean from page elements
 + logs inside report
 + consider names of validation methods
 + what if return button.click() will fail ?

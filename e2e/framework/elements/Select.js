@@ -27,7 +27,7 @@ Select.prototype.select = function (option) {
     .then(function() { return click(this.rootElement.element(by.cssContainingText('option', option)), 'selecting specified option');}.bind(this))
     .catch(function(err) {
       logger.error('selecting failed - option: [%s], list: [%s], error: [%s]', option, this.toString(), err.message);
-      return Q.reject(err);
+      return Promise.reject(err);
   }.bind(this));
 };
 
