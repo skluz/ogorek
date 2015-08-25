@@ -34,8 +34,12 @@ CalculatorPage.prototype.multiply = function(x, y) {
 
 CalculatorPage.prototype.performCalculation = function (x, y, operator) {
   return Promise.resolve()
-    .then(function() { logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator); })
-    .then(function() { return sendKeys(this.firstField, x, 'filling first field');}.bind(this))
+    .then(function() {
+      logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator);
+    })
+    .then(function() {
+      return sendKeys(this.firstField, x, 'filling first field');
+    }.bind(this))
     .then(function() { return this.operatorSelect.select(operator);}.bind(this))
     .then(function() { return sendKeys(this.secondField, y, 'filling second field');}.bind(this))
     .then(function() { return click(this.goButton, 'submitting calculation');}.bind(this))
@@ -56,7 +60,7 @@ CalculatorPage.prototype.values = function() {
 
 /*
   return Promise.resolve()
-    .then(this.goButton.getText.bind(this.goButton))
+    .then(this.goButton.bind(this.goButton))
     .then(function(text) {
       result.buttonText = text;
     })
