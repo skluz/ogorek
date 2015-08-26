@@ -3,6 +3,7 @@
 var Page = require('pages').Page;
 var Select = require('elements').Select;
 var Table = require('elements').Table;
+var Section = require('elements').Section;
 
 var CalculatorPage = function () {
 
@@ -14,6 +15,11 @@ var CalculatorPage = function () {
   this.secondField = element(by.model('second'));
   this.operatorSelect = new Select(element(by.model('operator')));
   this.goButton = $('#gobutton');
+
+  this.rulesPanel = new Section($('root'), {
+    saveButton : by.css('asdf'),
+    infoField : by.id('sdf')
+  });
 
   this.resultTable = new Table($('.table'), {
     columns: [
@@ -29,7 +35,7 @@ CalculatorPage.prototype = new Page();
 CalculatorPage.prototype.constructor = CalculatorPage;
 
 CalculatorPage.prototype.multiply = function(x, y) {
-  return this.performCalculationPromise(x, y, '*');
+  return this.performCalculationFlow(x, y, '*');
 };
 
 CalculatorPage.prototype.performCalculationFlow = function (x, y, operator) {

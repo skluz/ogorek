@@ -1,6 +1,6 @@
 'use strict';
 
-var Container = function Container(rootElement, locators) {
+var Section = function Section(rootElement, locators) {
 
   this.rootElement = rootElement;
 
@@ -14,8 +14,8 @@ var Container = function Container(rootElement, locators) {
 
 };
 
-Container.prototype.toString = function() {
+Section.prototype.toString = function() {
   return '[class: ' + this.constructor.name + ', locator: ' + this.element.locator() + ']';
 };
 
-module.exports = Container;
+module.exports = Section;

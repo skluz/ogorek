@@ -1,21 +1,31 @@
+My approach:
+- less code
+- better control which means possibility of debug, nice logging, easy maintenance, readability
+
+
 improvements:
-- no more callbacks, promises only (except hooks) [callbacks tree]
-- no 'actions' layer - complicated logic moved to specific pages -
-actions can be still useful in case operations which involve many pages/rest interfaces
-[90% actions was single operations, copy & paste, long file]
+1. no more callbacks, promises only (except hooks) [callbacks tree]
+2. no 'actions' layer - [90% actions contains only single operations, the same operation in steps layer]
+- simple operation or validation directly in step files
+- complicated logic moved to specific pages
+- actions can be still useful in case operations which involve many pages/rest interfaces
+3. common actions & validations methods (logging)
+4. logging framework: levels + steps, variables resolving, timestamp, line numbers, possibility to attach logs to allure report
+5. directory structure [hard to find right file, really big files]
+- features in separate directories
+- steps in separate directories
+6. imports without complicated directories structure + global available methods - validations, logger
+7. debug
+- from intellij
+- browser.pause();
 
 
 
-- common actions & validations methods (with logging)
-- debug possible: browser.pause()
-- debug from intellij
+
 - rest manager inside protractor flow
-- logging framework (levels, file log, resolving placeholders, etc., custom levels for steps, scenarios)
-- directory structure + easy modules import
 - container class
 - table class
 - builder
-- string instead of regexps
 
 
 todo:

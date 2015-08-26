@@ -18,8 +18,6 @@ exports.config = {
   },
   onPrepare: function() {
 
-    global.VError = require('verror');
-
     require('app-module-path').addPath('./e2e/framework');
     require('utils/validators').static(global);
     require('utils/actions').static(global);
