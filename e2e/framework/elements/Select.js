@@ -21,6 +21,12 @@ Select.prototype.getSelectedOption = function () {
 };
 
 Select.prototype.select = function (option) {
+  logger.info('selecting - option: [%s], list: [%s]', option, this.toString());
+  click(this.rootElement, 'opening select list');
+  return click(this.rootElement.element(by.cssContainingText('option', option)), 'selecting specified option');
+};
+
+Select.prototype.selectPromise = function (option) {
   return Promise.resolve()
     .then(function() { logger.info('selecting - option: [%s], list: [%s]', option, this.toString());}.bind(this))
     .then(function() { return click(this.rootElement, 'opening select list');}.bind(this))

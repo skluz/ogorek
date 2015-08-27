@@ -13,7 +13,7 @@ exports.config = {
   baseUrl: 'http://juliemr.github.io/',
   cucumberOpts: {
     require: 'e2e/step-definitions/**',
-    tags: '~@skip-me',
+    tags: '@wip',
     format: 'pretty'
   },
   onPrepare: function() {
@@ -44,7 +44,7 @@ exports.config = {
 
     var chai = require('chai');
     chai.use(require('chai-as-promised'));
-    chai.use(require('chai-subset'))
+    chai.use(require('chai-subset'));
     GLOBAL.expect = chai.expect;
 
     GLOBAL.Q = require('q');

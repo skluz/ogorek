@@ -19,7 +19,7 @@ module.exports = function() {
   });
 
   this.After(function (scenario, callback) {
-    scenario.attach(logger.buffer.join('\n'));
+    scenario.attach (logger.buffer.join('\n'));
     logger.buffer.length = 0;
     callback();
   });

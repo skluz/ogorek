@@ -1,37 +1,47 @@
-My approach:
+new approach:
 - less code
-- better control which means possibility of debug, nice logging, easy maintenance, readability
+- reusable elements
+- logging & debug
+- http://juliemr.github.io/protractor-demo/
 
 
 improvements:
 1. no more callbacks, promises only (except hooks) [callbacks tree]
-2. no 'actions' layer - [90% actions contains only single operations, the same operation in steps layer]
+2. no 'actions' layer - [90% actions contains single operations, the same operation in steps layer]
 - simple operation or validation directly in step files
 - complicated logic moved to specific pages
-- actions can be still useful in case operations which involve many pages/rest interfaces
-3. common actions & validations methods (logging)
+- actions can be still useful in case operations which involve many pages/rest interactions
+3. common actions & validations methods (with logging and locator), check failed assertions
 4. logging framework: levels + steps, variables resolving, timestamp, line numbers, possibility to attach logs to allure report
-5. directory structure [hard to find right file, really big files]
+5. directory structure [hard to find right file, really big files, merging problems]
+- configuration files support multiple directories
 - features in separate directories
 - steps in separate directories
-6. imports without complicated directories structure + global available methods - validations, logger
-7. debug
-- from intellij
-- browser.pause();
+6. imports without complicated directories structure
+- dedicated module
+- global available methods: validations, logger
+7. debug [doesn't work with current approach]
+- from intellij - break points
+- browser.pause(); Ctrl+C, c/repl, $('h2').getText();
 
+8. Rest requests inside protractor flow [StasB project]
+9. Builder - nice way of creating object
 
+10. Section object - generic grouping object
+- simple locators (shorter css/xpaths)
+- better separation of elements
+11. Table class (example of dynamic, reusable object)
+- definition per table in application
+- generic methods that use definition to provide results
+- another definition
+- extends by checkbox
 
-
-- rest manager inside protractor flow
-- container class
-- table class
-- builder
 
 
 todo:
-- samplers for GUI
-- screenshots
+- full stacktrace in case assertion fail
 
+done:
 + bean compare without all fields
 + creating bean from page elements
 + logs inside report

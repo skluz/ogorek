@@ -37,10 +37,9 @@ var EntrySamplers = function () {
   this.byName = function(name) {
     switch(name) {
       case 'one':
-        return EntryBuilder
-            .withName('dupa')
-            .withPerson(new Person('John', 'Kowalski'))
-            .withPerson(new Person('John', 'Doe'))
+        return EntryBuilder.withName('some name')
+          .withPerson(new Person('John', 'Kowalski'))
+          .withPerson(new Person('John', 'Doe'))
           .build();
         break;
       default:

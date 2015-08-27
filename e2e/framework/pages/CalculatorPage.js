@@ -15,9 +15,10 @@ var CalculatorPage = function () {
   this.secondField = element(by.model('second'));
   this.operatorSelect = new Select(element(by.model('operator')));
   this.goButton = $('#gobutton');
+  this.resultLabel = $('h2');
 
-  this.rulesPanel = new Section($('root'), {
-    saveButton : by.css('asdf'),
+  this.form = new Section($('.form-inline'), {
+    goButton : by.id('gobutton'),
     infoField : by.id('sdf')
   });
 
@@ -29,22 +30,27 @@ var CalculatorPage = function () {
     ]
   });
 
+
 };
 
 CalculatorPage.prototype = new Page();
 CalculatorPage.prototype.constructor = CalculatorPage;
 
 CalculatorPage.prototype.multiply = function(x, y) {
-  return this.performCalculationFlow(x, y, '*');
+  return this.performCalculation(x, y, '*');
 };
 
-CalculatorPage.prototype.performCalculationFlow = function (x, y, operator) {
+CalculatorPage.prototype.divide = function(x, y) {
+  return this.performCalculation(x, y, '/');
+};
+
+CalculatorPage.prototype.performCalculation = function (x, y, operator) {
   logger.info('performing calculation - x: [%s], y: [%s], operator: [%s]', x, y, operator);
+  //browser.pause();
   sendKeys(this.firstField, x, 'filling first field');
   this.operatorSelect.select(operator);
   sendKeys(this.secondField, y, 'filling second field');
   return click(this.goButton, 'submitting calculation');
-  logger.error("Error when performing calculation: [%s]", err.message);
 };
 
 CalculatorPage.prototype.performCalculationQAll = function (x, y, operator) {

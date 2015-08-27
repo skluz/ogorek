@@ -48,7 +48,7 @@ var Table = function Table(rootElement, definition) {
   };
 
   this.cellElement = function(row, column) {
-    return this.root.element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column);
+    return this.rootElement.element(by.tagName('tbody')).all(by.tagName('tr')).get(row).all(by.tagName('td')).get(column);
   };
 
   this.beans = function() {

@@ -1,23 +1,23 @@
 'use strict';
 
-function valueString(value) {
+function _getLocator(value) {
   return value.locator().toString();
 };
 
 function sendKeys(element, keys, message) {
   return element.sendKeys(keys).then(function() {
-    logger.info('sendKeys - element: [%s], value: [%s], message: [%s]', valueString(element), keys, message);
+    logger.info('sendKeys - [%s], element: [%s], value: [%s]', message, _getLocator(element), keys);
   }, function(err) {
-    logger.error('sendKeys - element: [%s], value: [%s], message: [%s], error: [%s]', valueString(element), keys, message, err.message);
+    logger.error('sendKeys - [%s], element: [%s], value: [%s], error: [%s]', message, _getLocator(element), keys, err.message);
     return Q.reject(err);
   });
 };
 
 function click(element, message) {
   return element.click().then(function() {
-    logger.info('click - element: [%s], message: [%s]', valueString(element), message);
+    logger.info('click - [%s], element: [%s]', message, _getLocator(element));
   }, function(err) {
-    logger.error('click - element: [%s], message: [%s], error: [%s]', valueString(element), message, err.message);
+    logger.error('click - [%s], element: [%s], error: [%s]', message, _getLocator(element), err.message);
     return Q.reject(err);
   });
 };

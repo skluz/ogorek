@@ -1,6 +1,6 @@
 'use strict';
 
-function valueClass(value) {
+function _getType(value) {
   if(typeof value === 'undefined') {
     return 'undefined';
   } else {
@@ -8,40 +8,46 @@ function valueClass(value) {
   }
 };
 
-function valueString(value) {
+function _getLocator(value) {
   return value.locator().toString();
+};
+
+function _asString(value) {
+  if(Array.isArray(value)) {
+    return value.join(',');
+  } else if(value instanceof Object) {
+    return JSON.stringify(value);
+  } else {
+    return value;
+  }
 };
 
 function expectPromiseValueEqual(promise, expectedValue, message) {
   return promise.then(function (actualValue) {
-    logger.info('expectPromiseValueEqual - type: [%s], expected: [%s], actual: [%s], message: [%s]', valueClass(actualValue), expectedValue, JSON.stringify(actualValue), message);
+    logger.info('expectPromiseValueEqual [%s], type: [%s], expected: [%s], actual: [%s]', message, _getType(actualValue), _asString(expectedValue), actualValue);
     return expect(actualValue).to.equal(expectedValue, message);
   }, function(err) {
-    logger.error('expectPromiseValueEqual - expected: [%s], message: [%s], error: [%s]', expectedValue, message, err.message);
+    logger.error('expectPromiseValueEqual [%s], expected: [%s], error: [%s]', message, expectedValue, err.message);
     return Q.reject(err);
   });
-};
 
+};
 function expectPromiseValueDeepEqual(promise, expectedValue, message) {
   return promise.then(function (actualValue) {
-    var stringValue = actualValue;
-    if(Array.isArray(actualValue)) {
-      stringValue = value.join(',')
-    }
-    logger.info('expectPromiseValueDeepEqual - type: [%s], expected: [%s], actual: [%s], message: [%s]', valueClass(actualValue), expectedValue, JSON.stringify(stringValue), message);
+    logger.info('expectPromiseValueDeepEqual [%s], type: [%s], expected: [%s], actual: [%s]', message, _getType(actualValue), expectedValue, _asString(actualValue));
     return expect(actualValue).to.deep.equal(expectedValue, message);
   }, function(err) {
-    logger.error('expectPromiseValueDeepEqual - expected: [%s], message: [%s], error: [%s]', expectedValue, message, err.message);
+    logger.error('expectPromiseValueDeepEqual [%s], expected: [%s], message: [%s], error: [%s]', message, expectedValue, err.message);
     return Q.reject(err);
   });
 };
 
 function expectElementTextEqual(element, expectedValue, message) {
   return element.getText().then(function(actualValue) {
-    logger.info('expectElementTextEqual - expected: [%s], actual: [%s], message: [%s]', expectedValue, actualValue, message);
+    logger.info('expectElementTextEqual - [%s], locator: [%s], expected: [%s], actual: [%s]', message, _getLocator(element), expectedValue, actualValue);
     return expect(actualValue).to.equal(expectedValue, message);
   }, function(err) {
-    logger.error('expectElementTextEqual - expected: [%s], message: [%s], error: [%s]', expectedValue, message, err.message);
+    logger.error('expectElementTextEqual - [%s], locator: [%s], expected: [%s], error: [%s]', _getLocator(element), expectedValue, err.message);
     return Q.reject(err);
   });
 };
@@ -92,10 +98,10 @@ function expectElementIsEnabled(element, message) {
 
 function expectElementEnabledStatus(element, expectedStatus, message) {
   return element.isEnabled().then(function(isEnabled) {
-    logger.info('expectElementEnabledStatus - element: [%s], expected: [%s], value: [%s], message: [%s]', valueString(element), expectedStatus, isEnabled, message);
+    logger.info('expectElementEnabledStatus - element: [%s], expected: [%s], value: [%s], message: [%s]', _getLocator(element), expectedStatus, isEnabled, message);
     return expect(expectedStatus).to.be.equal(isEnabled, message);
   }, function(err) {
-    logger.error("expectElementEnabledStatus - element: [%s], expected: [%s], message: [%s], error: [%s]", valueString(element), expectedStatus, message, err.message);
+    logger.error("expectElementEnabledStatus - element: [%s], expected: [%s], message: [%s], error: [%s]", _getLocator(element), expectedStatus, message, err.message);
     return Q.reject(err);
   });
 };
@@ -106,10 +112,10 @@ function expectElementIsDisplayed(element, message) {
 
 function expectElementDisplayedStatus(element, expectedStatus, message) {
   return element.isDisplayed().then(function(isEnabled) {
-    logger.info('expectElementDisplayedStatus - element: [%s], expected: [%s], value: [%s], message: [%s]', valueString(element), expectedStatus, isEnabled, message);
+    logger.info('expectElementDisplayedStatus - element: [%s], expected: [%s], value: [%s], message: [%s]', _getLocator(element), expectedStatus, isEnabled, message);
     return expect(expectedStatus).to.be.equal(isEnabled, message);
   }, function(err) {
-    logger.error("expectElementDisplayedStatus - element: [%s], expected: [%s], message: [%s], error: [%s]", valueString(element), expectedStatus, message, err.message);
+    logger.error("expectElementDisplayedStatus - element: [%s], expected: [%s], message: [%s], error: [%s]", _getLocator(element), expectedStatus, message, err.message);
     return Q.reject(err);
   });
 };
