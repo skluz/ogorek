@@ -71,6 +71,11 @@ var Table = function Table(rootElement, definition) {
           return text;
         });
         break;
+      case 'checkbox':
+        return td.element($('input[type=checkbox]')).isSelected(function(isSelected) {
+          return isSelected;
+        });
+        break;
       default:
         throw new Error('Bean type: ' + type + ' not implemented');
     }

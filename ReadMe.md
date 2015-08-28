@@ -39,7 +39,7 @@ improvements:
 
 
 todo:
-- full stacktrace in case assertion fail
+- better stacktrace in case assertion fail
 
 done:
 + bean compare without all fields

@@ -34,10 +34,10 @@ function expectPromiseValueEqual(promise, expectedValue, message) {
 };
 function expectPromiseValueDeepEqual(promise, expectedValue, message) {
   return promise.then(function (actualValue) {
-    logger.info('expectPromiseValueDeepEqual [%s], type: [%s], expected: [%s], actual: [%s]', message, _getType(actualValue), expectedValue, _asString(actualValue));
+    logger.info('expectPromiseValueDeepEqual [%s], type: [%s], expected: [%s], actual: [%s]', message, _getType(actualValue), _asString(expectedValue), _asString(actualValue));
     return expect(actualValue).to.deep.equal(expectedValue, message);
   }, function(err) {
-    logger.error('expectPromiseValueDeepEqual [%s], expected: [%s], message: [%s], error: [%s]', message, expectedValue, err.message);
+    logger.error('expectPromiseValueDeepEqual [%s], expected: [%s], message: [%s], error: [%s]', message, _asString(expectedValue), err.message);
     return Q.reject(err);
   });
 };
@@ -84,10 +84,10 @@ function expectPromiseArrayValueContains(promiseArray, keyToContains, message) {
 
 function expectPromiseArrayValueLength(promiseArray, expectedLength, message) {
   return promiseArray.then(function (actualArray) {
-    logger.info('expectPromiseArrayValueLength - array: [%s], length: [%s], message: [%s]', actualArray, expectedLength, message);
+    logger.info('expectPromiseArrayValueLength [%s], array: [%s], length: [%s]', message, actualArray, expectedLength);
     return expect(actualArray).to.have.length(expectedLength, message);
   }, function(err) {
-    logger.error('expectPromiseArrayValueLength - length: [%s], message: [%s], error: [%s]', length, message, err.message);
+    logger.error('expectPromiseArrayValueLength [%s], length: [%s], error: [%s]', message, length, err.message);
     return Q.reject(err);
   });
 };
