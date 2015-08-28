@@ -26,7 +26,8 @@ var CalculatorPage = function () {
     columns: [
       {name: 'time', type: 'text'},
       {name: 'expression', type: 'text'},
-      {name: 'result', type: 'text'}
+      {name: 'result', type: 'text'},
+      {name: 'valid',  type: 'checkbox'}
     ]
   });
 

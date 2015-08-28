@@ -13,7 +13,7 @@ improvements:
 - actions can be still useful in case operations which involve many pages/rest interactions
 3. common actions & validations methods (with logging and locator), check failed assertions
 4. logging framework: levels + steps, variables resolving, timestamp, line numbers, possibility to attach logs to allure report
-5. directory structure [hard to find right file, really big files, merging problems]
+5. directory structure [hard to find right file, really long files, merging problems]
 - configuration files support multiple directories
 - features in separate directories
 - steps in separate directories
@@ -39,6 +39,7 @@ improvements:
 
 
 todo:
+- check current report generation hack
 - better stacktrace in case assertion fail
 
 done:
