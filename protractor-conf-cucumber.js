@@ -21,6 +21,7 @@ exports.config = {
     require('app-module-path').addPath('./e2e/framework');
     require('utils/validators').static(global);
     require('utils/actions').static(global);
+    require('utils/resolving').static(global);
 
     GLOBAL.logger = require('tracer').console({
       transport : function(data) {

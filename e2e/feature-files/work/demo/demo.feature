@@ -3,9 +3,9 @@ Feature: Demo
 
   @wip
   Scenario: First scenario
-    Given user on main calculator page
-    When user multiply 2 by 3
-    Then result should be 7
+    Given user on main calculator page {int} {int:1:10}
+    #When user multiply 2 by 3
+    #Then result should be 7
 
   Scenario: Rest scenario
     Given user on main calculator page

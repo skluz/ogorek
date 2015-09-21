@@ -6,9 +6,11 @@ var EntrySamplers = require('rest').EntrySamplers;
 
 module.exports = function() {
 
-  this.Given('user on main calculator page', function () {
+  this.Given('user on main calculator page $number $xx', resolveArgs(function (number, x) {
+    console.log("Number: " + number);
+    console.log("X: " + x);
     return CalculatorPage.open();
-  });
+  }));
 
   this.When('user multiply $x by $y', function (x, y) {
     return CalculatorPage.multiply(x, y);
