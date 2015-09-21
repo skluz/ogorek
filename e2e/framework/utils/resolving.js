@@ -1,7 +1,8 @@
 'use strict';
 
+var chance = require('chance').Chance();
+
 var getInt = function(text) {
-  var chance = GLOBAL.ctx.chance;
   var params = text.split(':');
   var length = params.length;
   var result;
@@ -18,16 +19,23 @@ var getInt = function(text) {
 
 var resolveVariable = function (originalValue) {
   var resultValue = originalValue;
-  var reg = new RegExp(/\{([\w:]+?)\}/g);
+  var reg = new RegExp(/\{([\w:\.]+?)\}/g);
   var result;
   while ((result = reg.exec(originalValue)) !== null) {
-    var type = result[1].split(':')[0];
+    var typeAndVar = result[1].split(':')[0];
     var resolved = '{' + result[1] + '}';
-    switch (type) {
-      case 'int':
-        resolved = getInt(result[1]);
-        break;
-      default : throw new Error('Placeholder: ' + type + ' not implemented');
+    if(typeAndVar in GLOBAL.ctx.vars) {
+      resolved = GLOBAL.ctx.vars[typeAndVar];
+    } else {
+      var type = typeAndVar.split('.')[0];
+      switch (type) {
+        case 'int':
+          resolved = getInt(result[1]);
+          break;
+        default : throw new Error('Placeholder: ' + type + ' not implemented');
+      }
+      if(typeAndVar.indexOf('.') > 0)
+        GLOBAL.ctx.vars[typeAndVar] = resolved;
     }
     resultValue = resultValue.replace(new RegExp('{' + result[1] + '}'), resolved);
   }
