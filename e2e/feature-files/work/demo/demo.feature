@@ -3,7 +3,7 @@ Feature: Demo
 
   @wip
   Scenario: First scenario
-    Given user on main calculator page {int.1:20:30} {int.a}
+    Given user on main calculator page xx_{name} yy_{name2}
     #When user multiply 2 by 3
     #Then result should be 7
 
